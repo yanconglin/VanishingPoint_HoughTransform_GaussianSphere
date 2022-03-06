@@ -1,4 +1,4 @@
-# Deep vanishing point detection: <br /> Geometric priors make dataset variations vanish
+# Geometric priors make dataset variations vanish
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish]() (CVPR 2022) 
 

@@ -54,7 +54,7 @@ conda env update --file environment.yml
   
 ### Pre-trained Models
 
-You can download our pre-trained models from [SURFdrive](). Use `eval_manhattan.py` or 'eval_nyu.py' to reproduce the results.
+You can download our pre-trained models from [SURFdrive](). Use `eval_manhattan.py` or `eval_nyu.py` to reproduce the results.
 
 
 ### ToDo: VP detection for Your Own Images
@@ -88,7 +88,7 @@ Non-Manhattan world (3-orthogonal VPs):
 ```
 
 
-### Cite Deep Hough-Transform Line Priors
+### Citation
 
 If you find our paper useful in your research, please consider citing:
 ```bash

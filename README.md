@@ -26,11 +26,11 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
  <img src="figs/scannet_100.png" width="300">   <img src="figs/nyu_auc.png" width="300">   <img src="figs/yud_100.png" width="300"> 
  
- Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
+ (i) Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
  
- Advantage in detecting a varying number of VPs in non-Manhattan world;
+ (ii) <strong>Advantage in detecting a varying number of VPs in non-Manhattan world</strong>;
  
- <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>. <br/> (check our paper for more cross-dataset resuts).
+ (iii) <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>. <br/> (check our paper for more cross-dataset resuts).
  
  
  ## Data-Efficiency: superiority over SOTA in SMALL-DATA regime.

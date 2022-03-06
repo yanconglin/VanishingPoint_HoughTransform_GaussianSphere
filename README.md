@@ -17,7 +17,8 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
- <img src="figs/overview.png" width="600">  <img src="figs/model.png" width="1024"> 
+ <img src="figs/overview.png" width="600">  
+<!--  <img src="figs/model.png" width="1024">  -->
  
  An overview of our model for vanishing point detection, with two geometric priors.
  
@@ -33,7 +34,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  (iii) <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>.
  
  
- ## Data-Efficiency: superiority over SOTA in SMALL-DATA regime.
+ ## Data-Efficiency: superiority in small-data regime.
 
  <img src="figs/aa10_scan_log.png" width="320">   <img src="figs/aa10_su3_log.png" width="320">  
  
@@ -94,7 +95,7 @@ If you find our paper useful in your research, please consider citing:
 ```bash
 @article{,
   title={Deep vanishing point detection: Geometric priors make dataset variations vanish},
-  author={Lin, Yancong and Wiersma, Ruben and and Pintea, Silvia L and Hildebrandt, Klaus, and Eisemann, Elmar and van Gemert, Jan C},
+  author={Lin, Yancong and Wiersma, Ruben and and Pintea, Silvia L and Hildebrandt, Klaus and Eisemann, Elmar and van Gemert, Jan C},
   booktitle={Conference on Computer Vision and Pattern Recognition},
   year={2022}
 }

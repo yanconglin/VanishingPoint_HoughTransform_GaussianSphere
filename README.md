@@ -81,7 +81,7 @@ Manhattan world (3-orthogonal VPs):
 ./eval_manhattan.py -d 0  -o path/to/resuts_scannet.npz  config/scannet.yaml  path/to/checkpoint.pth.tar
 ```
 
-Non-Manhattan world (3-orthogonal VPs):
+Non-Manhattan world (unknown number of VPs, one extra step - DBSCAN to cluster VPs on the hemisphere):
 
 ```bash
 ./eval_nyu.py -d 0  config/nyu.yaml  path/to/checkpoint.pth.tar

@@ -72,7 +72,7 @@ python ./train.py -d 0 --identifier ht_sphere config/nyu.yaml
 Manhattan world (3-orthogonal VPs):
 
 ```bash
-./eval_manhattan.py -d 0  -o path/to/resuts_scannet.npz  config/scannet.yaml  path/to/checkpoint.pth.tar
+./eval_manhattan.py -d 0  -o path/to/resuts.npz  config/dataset.yaml  path/to/checkpoint.pth.tar
 ```
 
 Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to cluster VPs on the hemisphere):

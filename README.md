@@ -41,7 +41,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
  ## Code Structure
 
-Our implementation is largely based on [LCNN](https://github.com/zhou13/lcnn).  (Thanks Yichao Zhou for such a nice implementation!)
+Our implementation is largely based on [NeurVPS](https://github.com/zhou13/neurvps).  (Thanks Yichao Zhou for such a nice implementation!)
 
-We made minor changes to fit our HT-IHT module. If you are only interested in the HT-IHT module, please check ["HT.py"](https://github.com/yanconglin/Deep-Hough-Transform-Line-Priors/blob/master/ht-lcnn/lcnn/models/HT.py).
+We made minor changes to fit our design.
   

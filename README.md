@@ -30,7 +30,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
  (ii) <strong>Advantage in detecting a varying number of VPs in non-Manhattan world</strong>;
  
- (iii) <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>. <br/> (check our paper for more cross-dataset resuts).
+ (iii) <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>.
  
  
  ## Data-Efficiency: superiority over SOTA in SMALL-DATA regime.
@@ -47,9 +47,7 @@ We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to 
 For the ease of reproducibility, you are suggested to install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/) if you prefer) before executing the following commands. 
 
 ```bash
-conda create -y -n lcnn
-source activate lcnn
-conda install -y pytorch cudatoolkit=10.1 -c pytorch
-conda install -y tensorboardx -c conda-forge
-conda install -y pyyaml docopt matplotlib scikit-image opencv
+conda create -y -n vpd
+source activate vpd
+conda env update --file environment.yml
   

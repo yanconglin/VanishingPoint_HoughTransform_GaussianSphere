@@ -25,7 +25,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
 ## Main Results: Manhanttan (ScanNet) / non-Manhattan (NYU) / cross-dataset (YUD)
 
- <img src="figs/nyu_auc.png" width="320">   <img src="figs/scannet_100.png" width="320">   <img src="figs/nyu_auc.png" width="320"> 
+ <img src="figs/scannet_100.png" width="320">   <img src="figs/nyu_auc.png" width="320">   <img src="figs/nyu_auc.png" width="320"> 
  
  Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
  

@@ -6,4 +6,4 @@ Official implementation: [Deep vanishing point detection: Geometric priors make 
 
 E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
 
-Joint work from Computer Vision Lab and Computer Graphics and Visualization Group \ Delft University of Technology, the Netherlands
+Joint work from Computer Vision Lab and Computer Graphics and Visualization Group <br/> Delft University of Technology, the Netherlands

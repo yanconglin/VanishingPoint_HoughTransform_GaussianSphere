@@ -1,4 +1,4 @@
-# VanishingPoint_HoughTransform_GaussianSphere
+# Deep vanishing point detection: Geometric priors make dataset variations vanish
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish]() (CVPR 2022) 
 

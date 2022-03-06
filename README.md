@@ -23,7 +23,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  An overview of our model for vanishing point detection, with two geometric priors.
  
  
-## Main Results: Manhanttan (ScanNet) / non-Manhattan (NYU) / cross-dataset (YUD)
+## Main Results: Manhanttan (ScanNet) / non-Manhattan (NYU) / domain-shift (YUD)
 
  <img src="figs/scannet_100.png" width="280">   <img src="figs/nyu_auc.png" width="280">   <img src="figs/yud_100.png" width="280"> 
  
@@ -31,7 +31,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
  (ii) <strong>Advantage in detecting a varying number of VPs in non-Manhattan world</strong>;
  
- (iii) <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>.
+ (iii) <strong>Excellent performance on new datasets, e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world)</strong>.
  
  
  ## Data-Efficiency: superiority in small-data regime.

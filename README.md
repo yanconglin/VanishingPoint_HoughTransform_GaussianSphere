@@ -16,7 +16,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 ## Main Features: added Hough line priors
 
- <img src="figs/nyu_auc.pdf" width="160">   <img src="figs/su3_100.pdf" width="160">   <img src="figs/scannet_100.pdf" width="160">   <img src="figs/nyu_auc.pdf" width="160"> 
+ <img src="figs/nyu_auc.png" width="160">   <img src="figs/su3_100.png" width="160">   <img src="figs/scannet_100.png" width="160">   <img src="figs/nyu_auc.png" width="160"> 
   
  From left to right:  Ground Truth, Predictions, Input features with noise, and HT-IHT features. 
  

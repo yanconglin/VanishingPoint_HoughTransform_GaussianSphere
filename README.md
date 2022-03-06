@@ -16,9 +16,23 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 ## Main Features: added Hough line priors
 
- <img src="figs/nyu_auc.png" width="160">   <img src="figs/su3_100.png" width="160">   <img src="figs/scannet_100.png" width="160">   <img src="figs/nyu_auc.png" width="160"> 
+ <img src="figs/overview.png" width="480"> 
   
- From left to right:  Ground Truth, Predictions, Input features with noise, and HT-IHT features. 
+ Pixels - Hough bins - Spherical points - Vanishing Points.
  
- The added line priors are able to localize line cadidates from the noisy input.
+ ## Main Contribution: Images - Hough Transform - Gaussian Sphere
+ <img src="figs/htiht.png" width="600"> 
  
+ An overview of the proposed HT-IHT module.
+ 
+## Main results: Manhanttan (SU3 & ScanNet) / non-Manhattan (NYU) / cross-dataset (train on SU3/test on YUD)
+
+ <img src="figs/nyu_auc.png" width="160">   <img src="figs/su3_100.png" width="160">   <img src="figs/scannet_100.png" width="160">   <img src="figs/nyu_auc.png" width="160"> 
+ 
+ 
+ ## Code Structure
+
+Our implementation is largely based on [LCNN](https://github.com/zhou13/lcnn).  (Thanks Yichao Zhou for such a nice implementation!)
+
+We made minor changes to fit our HT-IHT module. If you are only interested in the HT-IHT module, please check ["HT.py"](https://github.com/yanconglin/Deep-Hough-Transform-Line-Priors/blob/master/ht-lcnn/lcnn/models/HT.py).
+  

@@ -31,7 +31,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
  Advantage in detecting a varying number of VPs in non-Manhattan world;
  
- <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world)).</strong>
+ <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world))</strong>. \ (check our paper for more cross-dataset resuts).
  
  
  ## Data-Efficiency: superiority over SOTA in SMALL-DATA regime.

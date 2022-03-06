@@ -18,6 +18,8 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
  <img src="figs/overview.png" width="600"> 
  
+  <img src="figs/model.png" width="600"> 
+ 
  An overview of our model for vanishing point detection, with two geometric priors.
  
  
@@ -32,9 +34,9 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  <strong>Excellent performance on new datasets (e.g. train on SU3 (synthetic)/ test on YUD (small-scale, real-world)).</strong>
  
  
- ## Data-efficiency: superiority over SOTA in small-data regime.
+ ## Data-Efficiency: superiority over SOTA in SMALL-DATA regime.
 
- <img src="figs/nyu_auc.png" width="320">   <img src="figs/su3_100.png" width="320">  
+ <img src="figs/aa10_scan_log.png" width="320">   <img src="figs/aa10_su3_log.png" width="320">  
  
  
  ## Code Structure

@@ -24,7 +24,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
 ## Main Results: Manhanttan (ScanNet) / non-Manhattan (NYU) / cross-dataset (YUD)
 
- <img src="figs/scannet_100.png" width="300">   <img src="figs/nyu_auc.png" width="300">   <img src="figs/yud_100.png" width="300"> 
+ <img src="figs/scannet_100.png" width="280">   <img src="figs/nyu_auc.png" width="280">   <img src="figs/yud_100.png" width="280"> 
  
  (i) Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
  
@@ -48,6 +48,6 @@ For the ease of reproducibility, you are suggested to install [miniconda](https:
 
 ```bash
 conda create -y -n vpd
-source activate vpd
+conda activate vpd
 conda env update --file environment.yml
   

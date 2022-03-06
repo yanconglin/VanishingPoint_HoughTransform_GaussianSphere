@@ -2,11 +2,8 @@
 Working on the repo now. May take several days to finalize...
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish](), CVPR'22 
-
 [Yancong Lin](https://yanconglin.github.io/), [Ruben Wiersma](https://rubenwiersma.nl/), [Silvia Laura Pintea](https://silvialaurapintea.github.io/), [Klaus Hildebrandt](https://graphics.tudelft.nl/~klaus/), [Elmar Eisemann](https://graphics.tudelft.nl/~eisemann/) and [Jan C. van Gemert](http://jvgemert.github.io/)
-
 E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
-
 Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, the Netherlands
 
 <img src="figs/yud.png" width="1024"> 
@@ -19,12 +16,10 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
  <img src="figs/overview.png" width="600">  
 <!--  <img src="figs/model.png" width="1024">  -->
- 
  An overview of our model for vanishing point detection, with two geometric priors.
  
  
 ## Main Results: Manhanttan / non-Manhattan / domain-shift
-
  <img src="figs/scannet_100.png" width="280">   <img src="figs/nyu_auc.png" width="280">   <img src="figs/yud_100.png" width="280"> 
  
  (i) Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
@@ -35,16 +30,13 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
  
  ## Data-Efficiency: superiority in small-data regime.
-
  <img src="figs/aa10_scan_log.png" width="320">   <img src="figs/aa10_su3_log.png" width="320">  
  
 
 ## Reproducing Results
-
 We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design.  (Thanks Yichao Zhou for such a nice implementation!)
 
 ### Installation
-
 For the ease of reproducibility, you are suggested to install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/) if you prefer) before executing the following commands. 
 
 ```bash
@@ -54,7 +46,6 @@ conda env update --file environment.yml
 ```
   
 ### Pre-trained Models
-
 You can download our pre-trained models from [SURFdrive](). Use `eval_manhattan.py` or `eval_nyu.py` to reproduce the results.
 
 
@@ -90,7 +81,6 @@ Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to clust
 
 
 ### Citation
-
 If you find our paper useful in your research, please consider citing:
 ```bash
 @article{,

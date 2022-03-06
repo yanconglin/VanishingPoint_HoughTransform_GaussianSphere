@@ -16,14 +16,14 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
- <img src="figs/htiht.png" width="600"> 
+ <img src="figs/overview.png" width="600"> 
  
  An overview of the proposed HT-IHT module.
  
  
 ## Main Results: Manhanttan (ScanNet) / non-Manhattan (NYU) / cross-dataset (YUD)
 
- <img src="figs/nyu_auc.png" width="240">   <img src="figs/scannet_100.png" width="240">   <img src="figs/nyu_auc.png" width="240"> 
+ <img src="figs/nyu_auc.png" width="280">   <img src="figs/scannet_100.png" width="280">   <img src="figs/nyu_auc.png" width="280"> 
  
  Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
  
@@ -34,7 +34,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
  ## Data-efficiency: superiority over SOTA in small-data regime.
 
- <img src="figs/nyu_auc.png" width="240">   <img src="figs/su3_100.png" width="240">  
+ <img src="figs/nyu_auc.png" width="320">   <img src="figs/su3_100.png" width="320">  
  
  
  ## Code Structure

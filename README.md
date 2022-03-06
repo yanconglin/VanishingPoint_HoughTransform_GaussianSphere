@@ -9,6 +9,7 @@ E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
 
 Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, the Netherlands
 
+<img src="figs/yud.png" width="1024"> 
 
 ## Introduction
 
@@ -16,9 +17,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
- <img src="figs/overview.png" width="600"> 
- 
-  <img src="figs/model.png" width="600"> 
+ <img src="figs/overview.png" width="600">  <img src="figs/model.png" width="600"> 
  
  An overview of our model for vanishing point detection, with two geometric priors.
  
@@ -38,10 +37,19 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
  <img src="figs/aa10_scan_log.png" width="320">   <img src="figs/aa10_su3_log.png" width="320">  
  
- 
- ## Code Structure
 
-Our implementation is largely based on [NeurVPS](https://github.com/zhou13/neurvps).  (Thanks Yichao Zhou for such a nice implementation!)
+## Reproducing Results
 
-We made minor changes to fit our design.
+We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design.  (Thanks Yichao Zhou for such a nice implementation!)
+
+### Installation
+
+For the ease of reproducibility, you are suggested to install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/) if you prefer) before executing the following commands. 
+
+```bash
+conda create -y -n lcnn
+source activate lcnn
+conda install -y pytorch cudatoolkit=10.1 -c pytorch
+conda install -y tensorboardx -c conda-forge
+conda install -y pyyaml docopt matplotlib scikit-image opencv
   

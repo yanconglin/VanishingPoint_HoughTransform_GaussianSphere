@@ -15,22 +15,15 @@ Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculte
 Deep learning has greatly improved vanishing point detection in images. Yet, deep networks require expensive annotated datasets trained on costly hardware and do not generalize to even slightly different domains and minor problem variants. Here, we address these issues by injecting deep vanishing point detection networks with prior knowledge. This prior knowledge no longer needs to be learned from data, saving valuable annotation efforts and compute, unlocking realistic few-sample scenarios, and reducing the impact of domain changes. Moreover, because priors are interpretable, it is easier to adapt deep networks to minor problem variations such as switching between Manhattan and non-Manhattan worlds. We incorporate two end-to-end trainable geometric priors: (i) <strong>Hough Transform</strong> -- mapping image pixels to straight lines, and (ii) <strong>Gaussian sphere</strong> -- mapping lines to great circles whose intersections denote vanishing points. Experimentally, we ablate our choices and show comparable accuracy as existing models in the large-data setting. We then validate that our model improves data efficiency, is robust to domain changes, and can easily be adapted to a non-Manhattan setting.
 
 
-## Main Features: added Hough line priors
-
- <img src="figs/overview.png" width="480"> 
-  
- Pixels - Hough bins - Spherical points - Vanishing Points.
- 
- 
- ## Main Contribution: Images - Hough Transform - Gaussian Sphere
+ ## Main Feature: Images - Hough Transform - Gaussian Sphere
  <img src="figs/htiht.png" width="600"> 
  
  An overview of the proposed HT-IHT module.
  
  
-## Main results: Manhanttan (SU3 & ScanNet) / non-Manhattan (NYU) / cross-dataset (YUD)
+## Main Results: Manhanttan (ScanNet) / non-Manhattan (NYU) / cross-dataset (YUD)
 
- <img src="figs/nyu_auc.png" width="200">   <img src="figs/su3_100.png" width="200">   <img src="figs/scannet_100.png" width="200">   <img src="figs/nyu_auc.png" width="200"> 
+ <img src="figs/nyu_auc.png" width="240">   <img src="figs/scannet_100.png" width="240">   <img src="figs/nyu_auc.png" width="240"> 
  
  Competitive results on large-scale Manhattan datasets: SU3/ScanNet;
  

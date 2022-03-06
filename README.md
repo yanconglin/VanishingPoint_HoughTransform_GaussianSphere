@@ -50,4 +50,53 @@ For the ease of reproducibility, you are suggested to install [miniconda](https:
 conda create -y -n vpd
 conda activate vpd
 conda env update --file environment.yml
+```
   
+### Pre-trained Models
+
+You can download our pre-trained models from [SURFdrive](). Use `eval_manhattan.py` or 'eval_nyu.py' to reproduce the results.
+
+
+### ToDo: VP detection for Your Own Images
+
+
+### Processing the Dataset
+
+
+
+### Training
+We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 
+
+To train the neural network on GPU 0 (specified by `-d 0`) with the default parameters, execute
+```bash
+python ./train.py -d 0 --identifier ht_sphere config/nyu.yaml
+```
+
+
+### Testing
+Manhattan world (3-orthogonal VPs):
+
+```bash
+./eval_manhattan.py -d 0  -o path/to/resuts_scannet.npz  config/scannet.yaml  path/to/checkpoint.pth.tar
+```
+
+Non-Manhattan world (3-orthogonal VPs):
+
+```bash
+./eval_nyu.py -d 0  config/nyu.yaml  path/to/checkpoint.pth.tar
+./cluster_nyu.py
+```
+
+
+### Cite Deep Hough-Transform Line Priors
+
+If you find our paper useful in your research, please consider citing:
+```bash
+@article{,
+  title={Deep vanishing point detection: Geometric priors make dataset variations vanish},
+  author={Lin, Yancong and Wiersma, Ruben and and Pintea, Silvia L and Hildebrandt, Klaus, and Eisemann, Elmar and van Gemert, Jan C},
+  booktitle={Conference on Computer Vision and Pattern Recognition},
+  year={2022}
+}
+```
+

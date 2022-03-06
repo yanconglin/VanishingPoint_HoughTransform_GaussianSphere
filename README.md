@@ -4,6 +4,6 @@ Official implementation: [Deep vanishing point detection: Geometric priors make 
 
 [Yancong Lin](https://yanconglin.github.io/), [Ruben Wiersma](https://rubenwiersma.nl/), [Silvia Laura Pintea](https://silvialaurapintea.github.io/), [Klaus Hildebrandt](https://graphics.tudelft.nl/~klaus/), [Elmar Eisemann](https://graphics.tudelft.nl/~eisemann/) and [Jan C. van Gemert](http://jvgemert.github.io/)
 
-E-mail: y.lin-1ATtudelftDOTnl; R.T.WiersmaATtudelftDOTnl
+E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
 
-Computer Vision Lab and Computer Graphics and Visualization,  Delft University of Technology, the Netherlands
+Joint work from Computer Vision Lab and Computer Graphics and Visualization Group,  Delft University of Technology, the Netherlands

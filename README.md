@@ -54,31 +54,48 @@ You can download our pre-trained models from [SURFdrive](https://surfdrive.surf.
 ### ToDo: VP detection for Your Own Images
 
 
-### Processing the Dataset
+### (step 1) Processing the Dataset
+
+SU3/ScanNet: we follow the [NeurVPS](https://github.com/zhou13/neurvps) to download the data. 
+```bash
+cd data
+../misc/gdrive-download.sh 1yRwLv28ozRvjsf9wGwAqzya1xFZ5wYET su3.tar.xz
+../misc/gdrive-download.sh 1y_O9PxZhJ_Ml297FgoWMBLvjC1BvTs9A scannet.tar.xz
+tar xf su3.tar.xz
+tar xf tmm17.tar.xz
+tar xf scannet.tar.xz
+rm *.tar.xz
+cd ..
+```
+
+NYU/YUD: Download the data from [https://github.com/fkluger/nyu_vp](https://github.com/fkluger/consac) at frist; and then use `eval_manhattan.py` to process the data. 
 
 
+### (step 2) Processing the Dataset
+Parameterization computation: compute the mapping from pixels -HT bins - Spherical points.
+We use GPUs (Pytorch) to speed up the calculation.
+```bash
+python parameterization_gpu.py
+```
 
-### Training
+### (step 3) Training
 We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 
-
 To train the neural network on GPU 0 (specified by `-d 0`) with the default parameters, execute
 ```bash
-python ./train.py -d 0 --identifier ht_sphere config/nyu.yaml
+python train.py -d 0 --identifier baseline config/nyu.yaml
 ```
 
 
-### Test
+### (step 3) Test
 Manhattan world (3-orthogonal VPs):
-
 ```bash
-./eval_manhattan.py -d 0  -o path/to/resuts.npz  config/dataset.yaml  path/to/checkpoint.pth.tar
+python eval_manhattan.py -d 0  -o path/to/resut.npz  path/to/dataset.yaml  path/to/checkpoint.pth.tar
 ```
 
 Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to cluster VPs on the hemisphere):
-
 ```bash
-./eval_nyu.py -d 0  config/nyu.yaml  path/to/checkpoint.pth.tar
-./cluster_nyu.py
+python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/checkpoint.pth.tar
+python cluster_nyu.py
 ```
 
 

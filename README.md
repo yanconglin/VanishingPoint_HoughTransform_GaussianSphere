@@ -76,7 +76,7 @@ python parameterization_gpu.py
 ```
 You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
-### (step 3) Training
+### (step 3) Train
 We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 
 To train the neural network on GPU 0 (specified by `-d 0`) with the default parameters, execute
 ```bash
@@ -84,7 +84,7 @@ python train.py -d 0 --identifier baseline config/nyu.yaml
 ```
 
 
-### (step 3) Test
+### (step 4) Test
 Manhattan world (3-orthogonal VPs):
 ```bash
 python eval_manhattan.py -d 0  -o path/to/resut.npz  path/to/dataset.yaml  path/to/checkpoint.pth.tar

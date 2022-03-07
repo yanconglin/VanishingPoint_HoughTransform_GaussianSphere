@@ -17,7 +17,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
- <img src="figs/model.png" width="1024"> 
+ <img src="figs/model.png" width="800"> 
  An overview of our model for vanishing point detection, with two geometric priors.
  
  

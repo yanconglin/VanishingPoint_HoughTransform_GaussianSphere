@@ -46,9 +46,6 @@ conda create -y -n vpd
 conda activate vpd
 conda env update --file environment.yml
 ```
-  
-### Pre-trained Models
-You can download our pre-trained models from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0). Use `eval_manhattan.py` or `eval_nyu.py` to reproduce the results.
 
 
 ### (step 1) Processing the Dataset
@@ -71,12 +68,13 @@ python nyu_data_process.py
 ```
 
 
-### (step 2) Processing the Dataset
-Parameterization computation: compute the mapping from pixels -HT bins - Spherical points.
+### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
+Compute the mapping from pixels -HT bins - Spherical points.
 We use GPUs (Pytorch) to speed up the calculation.
 ```bash
 python parameterization_gpu.py
 ```
+You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
 ### (step 3) Training
 We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 
@@ -97,6 +95,8 @@ Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to clust
 python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/checkpoint.pth.tar
 python cluster_nyu.py
 ```
+
+You can also download our pre-trained models from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
 
 ### ToDo: VP detection for Your Own Images

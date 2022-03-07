@@ -9,7 +9,7 @@ E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
 
 Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, the Netherlands
 
-<img src="figs/yud.png" width="1024"> 
+<img src="figs/overview.png" width="1024"> 
 
 ## Introduction
 
@@ -17,8 +17,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 
 
  ## Main Feature: Images - Hough Transform - Gaussian Sphere
- <img src="figs/overview.png" width="600">  
-<!--  <img src="figs/model.png" width="1024">  -->
+ <img src="figs/model.png" width="1024"> 
  An overview of our model for vanishing point detection, with two geometric priors.
  
  

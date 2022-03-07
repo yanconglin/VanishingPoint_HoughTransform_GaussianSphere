@@ -86,7 +86,7 @@ Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to clust
 ### Citation
 If you find our paper useful in your research, please consider citing:
 ```bash
-@article{,
+@article{lin2022vpd,
   title={Deep vanishing point detection: Geometric priors make dataset variations vanish},
   author={Lin, Yancong and Wiersma, Ruben and and Pintea, Silvia L and Hildebrandt, Klaus and Eisemann, Elmar and van Gemert, Jan C},
   booktitle={Conference on Computer Vision and Pattern Recognition},

@@ -51,9 +51,6 @@ conda env update --file environment.yml
 You can download our pre-trained models from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0). Use `eval_manhattan.py` or `eval_nyu.py` to reproduce the results.
 
 
-### ToDo: VP detection for Your Own Images
-
-
 ### (step 1) Processing the Dataset
 
 SU3/ScanNet: we follow the [NeurVPS](https://github.com/zhou13/neurvps) to download the data. 
@@ -68,7 +65,10 @@ rm *.tar.xz
 cd ..
 ```
 
-NYU/YUD: Download the data from [https://github.com/fkluger/nyu_vp](https://github.com/fkluger/consac) at frist; and then use `eval_manhattan.py` to process the data. 
+NYU/YUD: Download the data from [https://github.com/fkluger/nyu_vp](https://github.com/fkluger/consac) at frist; and then process the data. 
+```bash
+python nyu_data_process.py
+```
 
 
 ### (step 2) Processing the Dataset
@@ -97,6 +97,9 @@ Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to clust
 python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/checkpoint.pth.tar
 python cluster_nyu.py
 ```
+
+
+### ToDo: VP detection for Your Own Images
 
 
 ### Citation

@@ -53,7 +53,7 @@ You can download our pre-trained models from [SURFdrive](https://surfdrive.surf.
 
 ### (step 1) Processing the Dataset
 
-SU3/ScanNet: we follow the [NeurVPS](https://github.com/zhou13/neurvps) to download the data. 
+SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to download the data. 
 ```bash
 cd data
 ../misc/gdrive-download.sh 1yRwLv28ozRvjsf9wGwAqzya1xFZ5wYET su3.tar.xz
@@ -65,7 +65,7 @@ rm *.tar.xz
 cd ..
 ```
 
-NYU/YUD: Download the data from [https://github.com/fkluger/nyu_vp](https://github.com/fkluger/consac) at frist; and then process the data. 
+NYU/YUD: we follow [CONSAC](https://github.com/fkluger/nyu_vp) to download the data; and then process the data. 
 ```bash
 python nyu_data_process.py
 ```

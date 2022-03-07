@@ -48,7 +48,7 @@ conda env update --file environment.yml
 ```
   
 ### Pre-trained Models
-You can download our pre-trained models from [SURFdrive](). Use `eval_manhattan.py` or `eval_nyu.py` to reproduce the results.
+You can download our pre-trained models from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0). Use `eval_manhattan.py` or `eval_nyu.py` to reproduce the results.
 
 
 ### ToDo: VP detection for Your Own Images

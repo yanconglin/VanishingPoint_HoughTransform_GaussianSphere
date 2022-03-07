@@ -11,8 +11,8 @@ Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculte
 
 <img src="figs/overview.png" width="1024"> 
 
-## Introduction
 
+## Introduction
 Deep learning has greatly improved vanishing point detection in images. Yet, deep networks require expensive annotated datasets trained on costly hardware and do not generalize to even slightly different domains and minor problem variants. Here, we address these issues by injecting deep vanishing point detection networks with prior knowledge. This prior knowledge no longer needs to be learned from data, saving valuable annotation efforts and compute, unlocking realistic few-sample scenarios, and reducing the impact of domain changes. Moreover, because priors are interpretable, it is easier to adapt deep networks to minor problem variations such as switching between Manhattan and non-Manhattan worlds. We incorporate two end-to-end trainable geometric priors: (i) <strong>Hough Transform</strong> -- mapping image pixels to straight lines, and (ii) <strong>Gaussian sphere</strong> -- mapping lines to great circles whose intersections denote vanishing points. Experimentally, we ablate our choices and show comparable accuracy as existing models in the large-data setting. We then validate that our model improves data efficiency, is robust to domain changes, and can easily be adapted to a non-Manhattan setting.
 
 
@@ -31,7 +31,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  (iii) <strong>Excellent performance on new datasets, e.g. train on SU3 (synthetic)/ test on YUD (real-world)</strong>.
  
  
- ## Data-Efficiency: superiority in small-data regime.
+## Data-Efficiency: superiority in small-data regime.
  <img src="figs/aa10_scan_log.png" width="320">   <img src="figs/aa10_su3_log.png" width="320">  
  
 
@@ -100,6 +100,11 @@ You can also download our pre-trained models from [SURFdrive](https://surfdrive.
 
 
 ### ToDo: VP detection for Your Own Images
+
+
+
+## Questions:
+(1) Multi-scale approach; (2) focal length
 
 
 ### Citation

@@ -95,7 +95,7 @@ python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/
 python cluster_nyu.py --datadir path/to/nyu/data --pred_dir path/to/result_folder 
 ```
 
-You can also download our pre-trained models from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
+You can also download our pre-trained models and results from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
 
 ### ToDo: VP detection for Your Own Images

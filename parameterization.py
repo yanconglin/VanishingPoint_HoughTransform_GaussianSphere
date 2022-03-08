@@ -75,6 +75,12 @@ def orth(v):
     return o
 
 
+def to_pixel(vpts, focal_length=1.0, h=480, w=640):
+    x = vpts[:,0] / vpts[:, 2] * focal_length * max(h, w)/2.0 + w//2
+    y = -vpts[:,1] / vpts[:, 2] * focal_length * max(h, w)/2.0 + h//2
+    return y, x
+
+
 def hough_transform(rows, cols, theta_res, rho_res):
 
     theta = np.linspace(0, 180.0, int(np.ceil(180.0 / theta_res) + 1.0))+0.5

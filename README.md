@@ -118,12 +118,12 @@ In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https:
 
 ### (4) Pixel/HT/Gaussian sphere quantization.
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
-SU3 (multi): &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 128x128 - 184x180 - 32768;<br/>
+SU3 (multi):  128x128 - 184x180 - 32768;<br/>
 SU3: &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>
 ScanNet:&nbsp;&nbsp; &nbsp;256x256 - 365x180 - 16384; (coarse VPs from surface normals)<br/>
 NYU/YUD: &nbsp;240x320 - 403x180 - 32768;<br/>
 
-Experiments show that quantization at (128x128) is already good enough for a decent result. Moreover training/inference time decreases significantly (x2 than 256x256). However, quantization has always been a big minus for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
+Experiments show that quantization at (128x128) is already sufficient for a decent result. Moreover training/inference time decreases significantly (x2), comparing to 256x256. However, quantization has always been a weakness for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 
 ### (5) Code for other baselines.
 [J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?]();

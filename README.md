@@ -64,6 +64,7 @@ cd ..
 NYU/YUD: we download the data from [CONSAC](https://github.com/fkluger/nyu_vp); and then process the data. 
 ```bash
 python dataset/nyu_process.py --data_dir path/to/data --save_dir path/to/processed_data --mat_file path/to/nyu_depth_v2_labeled.mat
+python dataset/yud_process.py --data_dir path/to/data --save_dir path/to/processed_data
 ```
 
 

@@ -201,7 +201,7 @@ def main():
         vpts_gt = vpts_gt.cpu().numpy()
 
         for idx, (pred, target, vpt_gt) in enumerate(zip(preds, targets, vpts_gt)):
-            vpt_pd, vps_idx = topk_orthogonal_vps(pred, xyz, num_vps=C.io.num_vpts)
+            vpt_pd, vpt_idx = topk_orthogonal_vps(pred, xyz, num_vps=C.io.num_vpts)
             error = compute_error(vpt_pd, vpt_gt)
             errors.append(error)
 

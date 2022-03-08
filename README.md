@@ -111,7 +111,7 @@ You can also download our checkpoints/results/logs from [SURFdrive](https://surf
 The Multi-scale version will be released later.
 
 ### (2) Details about focal length.
-The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are the image height/width). Knowing the focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. 
+The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are the image height/width). Knowing the focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. Given a focal length, you can use [to_pixel](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/3e8d6c9442d8366a30a09f4386b1503d9cc1781f/parameterization.py#L78) to back-project a VP on the image plane.
 
 ### (3) Focal length unknown/uncalibrated images.
 In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might need to think about how to find VPs without the Manhattan assumption. One solution is clustering as shown on the NYU dataset. A second solution could be simply picking up the top-k VPs (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49) assuming they are equally spread over the hemisphere). There are other solutions as well. The best solution may differ from case to case. 

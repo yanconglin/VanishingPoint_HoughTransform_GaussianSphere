@@ -106,7 +106,7 @@ You can also download our pre-trained models from [SURFdrive](https://surfdrive.
 ### (1) Where to find the source code for the Multi-scale version?
 The Multi-scale version will be released later.
 
-### (2) Q on focal length.
+### (2) Details about focal length.
 The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are the image height/width). Knowing the focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. 
 
 ### (3) Focal length unknown/uncalibrated images.

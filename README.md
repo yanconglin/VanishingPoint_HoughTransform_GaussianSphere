@@ -119,7 +119,7 @@ In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https:
 ### (4) HT/Gaussian sphere quantization.
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
 SU3: &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768; (precise VPs)<br/>
-ScanNet:&nbsp;&nbsp; 256x256 - 365x180 - 16384; (coarse VPs only)<br/>
+ScanNet:&nbsp;&nbsp; &nbsp;256x256 - 365x180 - 16384; (coarse VPs only)<br/>
 NYU/YUD: &nbsp;240x320 - 403x180 - 32768;<br/>
 
 But, do we actually need this fine-grained sampling? I have also tested a less-fine-grained sampling (e.g. 128x128 - 184x180 - 32768/16384), and only observed marginal decrease. My understanding is that sampling at (128x128 - 184x180 - 16384) is already good enough for a decent result. Moreover the training/inderence speed almost doubles. However, to compete on large benchmarks, it might be necessary to use the finest. You can also find quantitive results in Tab 2, where we do sampling at (128x128 - 184x180 - 32768/16384) level for the multi-scale version. Overall, quantization has always been a big minus for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.

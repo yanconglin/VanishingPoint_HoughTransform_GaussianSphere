@@ -118,7 +118,7 @@ In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https:
 
 ### (4) Pixel/HT/Gaussian sphere quantization.
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
-SU3 (*Ours**): &nbsp; 128x128 - 184x180 - 32768;<br/>
+SU3 (*Ours**): &nbsp;&nbsp;&nbsp; 128x128 - 184x180 - 32768;<br/>
 SU3 (*Ours*): &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>
 ScanNet (*Ours*):&nbsp;&nbsp; &nbsp;&nbsp;256x256 - 365x180 - 16384; (coarse VPs from surface normals)<br/>
 NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768;<br/>

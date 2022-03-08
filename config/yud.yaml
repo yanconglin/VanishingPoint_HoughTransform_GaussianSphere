@@ -1,0 +1,32 @@
+io:
+  # tensorboard_port: 0
+  resume_from:
+  logdir: logs/
+  dataset: YUD
+  datadir: dataset/YorkUrbanDB/yud_plus/processed_data_aug
+  ht_mapping: parameterization/nyu/ht_240_320_403_180.npz
+  sphere_mapping: parameterization/nyu/sphere_neighbors_403_180_32768.npz
+  num_workers: 2
+  focal_length: 1.0
+  num_neighbors: 20  
+  num_vpts: 
+  num_nodes: 32768
+  percentage: 1
+
+model:
+  batch_size: 3
+  backbone: stacked_hourglass
+  depth: 4
+  num_stacks: 1
+  num_blocks: 1
+  lpos: 1.0
+  lneg: 1.0
+  num_channels: 64
+
+optim:
+  name: Adam
+  lr: 4.0e-4
+  amsgrad: True
+  weight_decay: 1.0e-5
+  max_epoch: 36
+  lr_decay_epoch: 24

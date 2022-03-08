@@ -1,0 +1,32 @@
+io:
+  # tensorboard_port: 0      # disabled on HPC cluster
+  logdir: logs/              # dir to save checkpoints and results
+  resume_from:               # load a checkpoint and check the result
+  dataset: NYU               # dataset
+  datadir: dataset/nyu_vp/processed_data
+  ht_mapping: parameterization/nyu/ht_240_320_403_180.npz
+  sphere_mapping: parameterization/nyu/sphere_neighbors_403_180_32768.npz
+  focal_length: 1.0          # change f when doing cross tests
+  num_neighbors: 20          # top-k neighbors
+  num_vpts:                  # number of VPs
+  num_nodes: 32768           # number of sampled points on the hemisphere
+  percentage: 1              # percentage of data for training
+  num_workers: 2             # dataloader setting
+
+model:
+  batch_size: 3
+  backbone: stacked_hourglass   # hourglass
+  depth: 4          # hourglass
+  num_stacks: 1     # hourglass
+  num_blocks: 1     # hourglass
+  lpos: 1.0         # pos/neg imbalance
+  lneg: 1.0         # pos/neg imbalance
+  num_channels: 64  # channel dimensions for spherical conv
+
+optim:
+  name: Adam
+  lr: 4.0e-4
+  amsgrad: True
+  weight_decay: 1.0e-5
+  max_epoch: 36
+  lr_decay_epoch: 24

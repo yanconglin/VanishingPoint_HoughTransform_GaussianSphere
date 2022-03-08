@@ -1,0 +1,32 @@
+io:
+  # tensorboard_port: 0
+  resume_from:
+  logdir: logs/
+  dataset: Wireframe
+  datadir: dataset/su3
+  ht_mapping: parameterization/su3/ht_256_256_365_180.npz
+  sphere_mapping: parameterization/su3/sphere_neighbors_365_180_32768.npz
+  num_workers: 2
+  focal_length: 2.1875
+  num_neighbors: 16
+  num_vpts: 3
+  num_nodes: 32768
+  percentage: 1.0
+
+model:
+  batch_size: 4
+  backbone: stacked_hourglass
+  depth: 4
+  num_stacks: 1
+  num_blocks: 1
+  lpos: 1.0
+  lneg: 1.0
+  num_channels: 64
+
+optim:
+  name: Adam
+  lr: 4.0e-4
+  amsgrad: True
+  weight_decay: 1.0e-5
+  max_epoch: 36
+  lr_decay_epoch: 24

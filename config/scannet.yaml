@@ -1,0 +1,32 @@
+io:
+  # tensorboard_port: 0
+  resume_from:
+  logdir: logs/
+  dataset: ScanNet
+  datadir: dataset/scannet-vp
+  ht_mapping: parameterization/scannet/ht_256_256_365_180.npz
+  sphere_mapping: parameterization/scannet/sphere_neighbors_365_180_16384.npz
+  focal_length: 2.408333333333333
+  num_neighbors: 16
+  num_nodes: 16384
+  num_vpts: 3
+  num_workers: 2
+  percentage: 1.0
+  
+model:
+  backbone: stacked_hourglass
+  batch_size: 4
+  depth: 4
+  lneg: 1.0
+  lpos: 1.0
+  num_blocks: 1
+  num_stacks: 1
+  num_channels: 128
+  
+optim:
+  amsgrad: true
+  lr: 0.0004
+  lr_decay_epoch: 24
+  max_epoch: 36
+  name: Adam
+  weight_decay: 1.0e-05

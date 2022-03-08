@@ -386,6 +386,36 @@ def find_nn_neighbors_sphere(all_hw_xyz, xyz):
     return mapping
 
 
+### re-arrange for efficient sampling
+def rearrange(sphere_neighbors, fibonacci_xyz):
+    # sphere_neighbors: Mx3 (ht_inds, fibonacci_inds, weight)
+
+    max_len = 0
+    for i, xyz in enumerate(fibonacci_xyz):
+        print('i', i)
+        inds = sphere_neighbors[:, 1]==i
+        max_len = max(max_len, inds.sum())
+    print('max_len', max_len)
+    
+    mapping = np.zeros((len(fibonacci_xyz), max_len, 2))
+    mapping.fill(-1.0)
+    mapping_non = []
+    for i, xyz in enumerate(fibonacci_xyz):
+        print('i', i)
+        inds = sphere_neighbors[:, 1] == i
+        if inds.sum()==0:
+            mapping_non.append(i)
+            continue
+        ht = sphere_neighbors[inds, 0]
+        weights = sphere_neighbors[inds, 2]
+        mapping[i, 0:inds.sum(), 0] = ht
+        mapping[i, 0:inds.sum(), 1] = weights
+
+    print('mapping_non', mapping_non)
+    print('mapping', mapping.shape)
+    return votes
+
+###########################################################
 def main(opt):
     ### Initialize seeds: this is important!
     random.seed(0)

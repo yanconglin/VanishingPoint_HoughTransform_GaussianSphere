@@ -2,7 +2,7 @@
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish](), CVPR'22 
 
-(Final check ongoing... camera-ready not yet available at this moment. You can reproduce the paper according to the code :))
+(Final check ongoing... camera-ready not yet available at this moment.)
 
 
 [Yancong Lin](https://yanconglin.github.io/), [Ruben Wiersma](https://rubenwiersma.nl/), [Silvia Laura Pintea](https://silvialaurapintea.github.io/), [Klaus Hildebrandt](https://graphics.tudelft.nl/~klaus/), [Elmar Eisemann](https://graphics.tudelft.nl/~eisemann/) and [Jan C. van Gemert](http://jvgemert.github.io/)

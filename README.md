@@ -117,10 +117,10 @@ The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are
 In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might need to think about how to find VPs without the Manhattan assumption. One solition is clustering as shown on the NYU dataset. A second solution could be simply picking up the top-k VPs (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49), where you can choose the top-k VPs that are equally spread over the hemisphere). There are other solutions as well. Unfortunately, without more knowledge, I can not tell you which solution is a better one.
 
 ### (4) HT/Gaussian sphere quantization.
-In this repository, the details are: <br/>
-SU3 - images:256x256; HT:365x180; Sphere: 32768; (precise VPs)<br\>
-ScanNet - images:256x256; HT:365x180; Sphere: 16384; (coarse VPs only, 128x128 - 384x180 - 16384 already good enough) <br/>
-NYU/YUD - images:240x320; HT:403x180; Sphere: 32768;  <br/>
+In this repository, the details are:<br/>
+SU3 - images:256x256; HT:365x180; Sphere: 32768; (precise VPs)<br/>
+ScanNet - images:256x256; HT:365x180; Sphere: 16384; (coarse VPs only, 128x128 - 384x180 - 16384 already good enough)<br/>
+NYU/YUD - images:240x320; HT:403x180; Sphere: 32768;<br/>
 
 But, do we actually need this fine-grained sampling? I have also tested a less-fine-grained sampling (e.g. 128x128 - 184x180 - 32768/16384), and only observed marginal decrease. My understanding is that sampling at (128x128 - 184x180 - 16384) is already good enough for a decent result.Moreover the training/inderence speed doubles. However, to compete on large benchmarks, it might be necessary to use the finest. You can also find quantitive results in Tab 2, where we do sampling at (128x128 - 184x180 - 32768/16384) level. Overall, quantization has always been a big minus for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 

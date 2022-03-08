@@ -124,7 +124,8 @@ NYU/YUD: &nbsp;240x320 - 403x180 - 32768;<br/>
 
 But, do we actually need this fine-grained sampling? I have also tested a less-fine-grained sampling (e.g. 128x128 - 184x180 - 32768/16384), and only observed marginal decrease. My understanding is that sampling at (128x128 - 184x180 - 16384) is already good enough for a decent result. Moreover the training/inderence speed almost doubles. However, to compete on large benchmarks, it might be necessary to use the finest. You can also find quantitive results in Tab 2, where we do sampling at (128x128 - 184x180 - 32768/16384) level for the multi-scale version. Overall, quantization has always been a big minus for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 
-
+### (5) Codes for other baselines.
+[J, T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?]();
 
 ### Citation
 If you find our paper useful in your research, please consider citing:

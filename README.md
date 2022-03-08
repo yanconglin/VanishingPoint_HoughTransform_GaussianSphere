@@ -1,6 +1,7 @@
 # Geometric priors make dataset variations vanish
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish](), CVPR'22 
+
 (Final check ongoing... the preprint/camera-ready version is not yet available at this moment. You can reproduce the paper according to the code :))
 
 

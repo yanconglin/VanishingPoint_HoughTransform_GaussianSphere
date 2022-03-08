@@ -1,5 +1,4 @@
 # Geometric priors make dataset variations vanish
-Working on the repo. May take several days to finish ...
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish](), CVPR'22 
 
@@ -50,7 +49,7 @@ conda env update --file environment.yml
 
 ### (step 1) Processing the Dataset
 
-SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to download the data. 
+SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to process the data. 
 ```bash
 cd data
 ../misc/gdrive-download.sh 1yRwLv28ozRvjsf9wGwAqzya1xFZ5wYET su3.tar.xz
@@ -62,17 +61,17 @@ rm *.tar.xz
 cd ..
 ```
 
-NYU/YUD: we follow [CONSAC](https://github.com/fkluger/nyu_vp) to download the data; and then process the data. 
+NYU/YUD: we download the data from [CONSAC](https://github.com/fkluger/nyu_vp); and then process the data. 
 ```bash
-python nyu_data_process.py
+python dataset/nyu_process.py --data_dir path/to/data --save_dir path/to/processed_data --mat_file path/to/nyu_depth_v2_labeled.mat
 ```
 
 
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
 Compute the mapping from pixels -HT bins - Spherical points.
-We use GPUs (Pytorch) to speed up the calculation.
+We use GPUs (Pytorch) to speed up the calculation. 
 ```bash
- python parameterization_gpu.py --save_dir='mapping/nyu/' --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=16384
+ python parameterization.py --save_dir='parameterization/nyu/' --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=32768 # NYU as an example
 ```
 You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 

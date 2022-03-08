@@ -116,13 +116,14 @@ The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are
 ### (3) Focal length unknown/uncalibrated images.
 In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might need to think about how to find VPs without the Manhattan assumption. One solution is clustering as shown on the NYU dataset. A second solution could be simply picking up the top-k VPs (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49) assuming they are equally spread over the hemisphere). There are other solutions as well. The best solution may differ from case to case. 
 
-### (4) HT/Gaussian sphere quantization.
+### (4) Pixel/HT/Gaussian sphere quantization.
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
-SU3: &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768; (precise VPs)<br/>
-ScanNet:&nbsp;&nbsp; &nbsp;256x256 - 365x180 - 16384; (coarse VPs only)<br/>
+SU3 (multi): &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 128x128 - 184x180 - 32768;<br/>
+SU3: &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>
+ScanNet:&nbsp;&nbsp; &nbsp;256x256 - 365x180 - 16384; (coarse VPs from surface normals)<br/>
 NYU/YUD: &nbsp;240x320 - 403x180 - 32768;<br/>
 
-Do we actually need this fine-grained sampling? I have also tested a less-fine-grained sampling (e.g. 128x128 - 184x180 - 32768/16384), and only observed marginal decrease on the full dataset. My understanding is that sampling at (128x128 - 184x180 - 16384) is already good enough for a decent result. Moreover training/inference speed almost doubles. You can also find quantitive results in Tab 2, where we do sampling at (128x128 - 184x180 - 32768/16384) level for the multi-scale version. Overall, quantization has always been a big minus for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
+Experiments show that quantization at (128x128) is already good enough for a decent result. Moreover training/inference time decreases significantly (x2 than 256x256). However, quantization has always been a big minus for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 
 ### (5) Code for other baselines.
 [J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?]();

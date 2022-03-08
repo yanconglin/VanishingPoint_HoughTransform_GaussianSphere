@@ -72,7 +72,7 @@ python nyu_data_process.py
 Compute the mapping from pixels -HT bins - Spherical points.
 We use GPUs (Pytorch) to speed up the calculation.
 ```bash
-python parameterization_gpu.py
+ python parameterization_gpu.py --save_dir='mapping/nyu/' --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=16384
 ```
 You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 

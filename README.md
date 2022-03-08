@@ -86,13 +86,13 @@ python train.py -d 0 --identifier baseline config/nyu.yaml
 ### (step 4) Test
 Manhattan world (3-orthogonal VPs):
 ```bash
-python eval_manhattan.py -d 0  -o path/to/resut.npz  path/to/dataset.yaml  path/to/checkpoint.pth.tar
+python eval_manhattan.py -d 0  -o path/to/resut.npz  path/to/config.yaml  path/to/checkpoint.pth.tar
 ```
 
 Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to cluster VPs on the hemisphere):
 ```bash
-python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/checkpoint.pth.tar
-python cluster_nyu.py
+python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/nyu/checkpoint.pth.tar
+python cluster_nyu.py --datadir path/to/nyu/data --pred_dir path/to/result_folder 
 ```
 
 You can also download our pre-trained models from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
@@ -103,7 +103,14 @@ You can also download our pre-trained models from [SURFdrive](https://surfdrive.
 
 
 ## Questions:
-(1) Multi-scale approach; (2) focal length
+### (1) Where to find the source code for the Multi-scale version?
+The Multi-scale version will be released later.
+
+### (2) Q on focal length.
+The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are the image height/width). Knowing the focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. 
+
+### (3) Focal length unknown/uncalibrated images.
+In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might need to think about how to find VPs without the Manhattan assumption. One solition is clustering as shown on the NYU dataset. A second solution could be simply picking up the top-k VPs (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49), where you can choose the top-k VPs that are equally spread over the hemisphere). There are other solutions as well. Unfortunately, without more knowledge, I can not tell you which solution is a better one.
 
 
 ### Citation

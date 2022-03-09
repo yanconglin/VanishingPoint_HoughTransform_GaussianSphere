@@ -49,7 +49,7 @@ conda activate vpd
 conda env update --file environment.yml
 ```
 
-### (step 1) Processing the Dataset
+### (step 1) Process the data
 
 SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to process the data. 
 ```bash

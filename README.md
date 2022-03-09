@@ -68,7 +68,7 @@ Shortcut: You can simply download our pre-calculated parameterizations from [SUR
 
 To comute the mapping from pixels -HT bins - Spherical points, run the following command: 
 ```bash
- python parameterization.py --save_dir='parameterization/' --focal_length=1.0 --rows=128 --cols=128 --num_samples=1024 --num_points=32768 # SU3 as an example
+ python parameterization.py --save_dir=parameterization/ --focal_length=1.0 --rows=128 --cols=128 --num_samples=1024 --num_points=32768 # SU3 as an example
 ```
 We use GPUs (Pytorch) to speed up the calculation (~4 hours).
 

@@ -37,6 +37,11 @@ import mpl_toolkits.mplot3d
 from tqdm import tqdm
 from docopt import docopt
 import scipy.io as sio
+import scipy.optimize
+import sklearn.metrics
+import scipy.sparse
+from sklearn.metrics import pairwise_distances
+from sklearn.cluster import DBSCAN
 import vpd
 import vpd.models.vanishing_net as vn
 from vpd.config import C, M
@@ -64,6 +69,39 @@ def topk_orthogonal_vps(scores, xyz, num_vps=3):
 
     vps_pd = xyz[vps_idx]
     return vps_pd, vps_idx
+
+def vps_clustering(vps_prob, xyz, threshold):
+    inds = np.flatnonzero(vps_prob >= threshold)
+    vps = xyz[inds, :]
+    dis = vps @ np.transpose(vps)
+    dis = np.clip(dis, a_min=-1., a_max=1.)  ### same=1, opposite=-1, orthogonal=0
+    dis = 1.0 - np.abs(dis)  ### same/opposite =0, orthogonal = 1
+
+    dis_sparse = scipy.sparse.csr_matrix(dis)
+    clusterer = DBSCAN(eps=0.005, min_samples=9, metric='precomputed').fit(dis_sparse)
+    labels = clusterer.labels_
+    # print('clusters', type(clusters), clusters.shape, np.unique(clusters))
+
+    if labels.min()<=0: labels += (np.abs(labels.min())+1)  ### the labels from DBSCAN can be negtive (zeros) sometimes
+
+    vps_pd=[]
+    for label in np.unique(labels):
+        inds_cluster = inds[labels==label]
+        vp_max, vp_argmax = np.max(vps_prob[inds_cluster]), np.argmax(vps_prob[inds_cluster])
+        vps_pd.append(np.array([inds_cluster[vp_argmax], vp_max]))
+        # print('vps_pd', inds_cluster[vp_argmax], vp_max, len(inds_cluster))
+    vps_pd = np.vstack(vps_pd)
+
+    arg_prob = np.argsort(vps_pd[:, 1])[::-1]
+    vps_pd_sort = vps_pd[arg_prob, 0].astype(int)
+
+    # # # cluster labels for each spherical point
+    vps_cluster = np.zeros(vps_prob.shape)
+    vps_cluster[inds] = labels
+
+    return xyz[vps_pd_sort], vps_cluster.astype(int)
+
+
 
 def to_pixel(vpts, focal_length=1.0, h=480, w=640):
     x = vpts[:,0] / vpts[:, 2] * focal_length * max(h, w)/2.0 + w//2
@@ -173,9 +211,16 @@ def main():
         result = model(input_dict)
     pred = result["prediction"].cpu().numpy()[0]
     
-    # Simply pick up the top-k, as an example. Use clustering for detecting multiple VPs
-    vpts_pd, vpts_idx = topk_orthogonal_vps(pred, xyz, num_vps=3)
-    # Considering resizing VPs from [480, 640] to original size [img_h, img_w].
+    # Option 1:
+    # a. f available: first map to camera space, and then pick up the top3;
+    # b. Assumption: VPs are more or less equally spread over the sphere.
+    # vpts_pd, vpts_idx = topk_orthogonal_vps(pred, xyz, num_vps=3)
+    
+    # Option 2 - unknown f: Use clustering to detect multiple VPs
+    vpts_pd, vpts_idx = vps_clustering(pred, xyz, threshold=0.5)
+    angles_pd = catersian_to_sphere(vpts_pd)
+    
+    # You might want to resize VPs from [480, 640] to original size [img_h, img_w].
     ys, xs = to_pixel(vpts_pd, focal_length=1.0, h=480, w=640)
 
     ### save predictions,
@@ -197,7 +242,7 @@ def main():
 
     ax = fig.add_subplot(122)
     ax.scatter(angles[:, 0], angles[:, 1], c=pred)
-    ax.scatter(angles[vpts_idx, 0], angles[vpts_idx, 1], c='r')
+    ax.scatter(angles_pd[:, 0], angles_pd[:, 1], c='r')
     ax.set_title('Sphere')
     plt.savefig('pred.png', format='png', bbox_inches ='tight', pad_inches = 0.1, transparent=True,  dpi=600)
     plt.suptitle('VP prediction')

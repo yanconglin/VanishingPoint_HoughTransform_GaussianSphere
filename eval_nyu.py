@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Detect vanishing points in non-Manhattan world.
 Usage:
-    eval.py [options] <yaml-config> <checkpoint>
-    eval.py ( -h | --help )
+    eval_nyu.py [options] <yaml-config> <checkpoint>
+    eval_nyu.py ( -h | --help )
 
 Arguments:
    <yaml-config>                 Path to the yaml hyper-parameter file

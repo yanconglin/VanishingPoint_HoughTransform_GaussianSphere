@@ -72,11 +72,11 @@ python dataset/yud_process.py --data_dir path/to/data --save_dir path/to/process
 
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
 Compute the mapping from pixels -HT bins - Spherical points.
-We use GPUs (Pytorch) to speed up the calculation. 
+We use GPUs (Pytorch) to speed up the calculation (~4 hours). 
 ```bash
- python parameterization.py --save_dir='parameterization/nyu/' --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=32768 # NYU as an example
+ python parameterization.py --save_dir=parameterization/nyu/ --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=32768 # NYU as an example
 ```
-You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
+Tip: you can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
 ### (step 3) Train
 We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 

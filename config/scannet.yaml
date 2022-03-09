@@ -1,0 +1,39 @@
+io:
+  datadir: dataset/scannet-vp
+  dataset: Scannet
+  focal_length: 2.408333333333333
+  logdir: logs/
+  num_neighbors:
+  - 16
+  - 16
+  - 16
+  num_nodes:
+  - 512
+  - 128
+  num_vpts: 3
+  num_workers: 4
+  percentage: 1.0
+  resume_from: logs/211112-162218-scannet
+  tensorboard_port: 0
+  theta: 1.0077734139879833
+  thetas:
+  - 90.0
+  - 6.242524998665826
+  - 0.9587939915245041
+  total_nodes: 16384
+  validation_debug: 120
+model:
+  backbone: stacked_hourglass
+  batch_size: 16
+  depth: 4
+  lneg: 1.0
+  lpos: 1.0
+  num_blocks: 1
+  num_stacks: 1
+optim:
+  amsgrad: true
+  lr: 0.0004
+  lr_decay_epoch: 4
+  max_epoch: 10
+  name: Adam
+  weight_decay: 1.0e-05

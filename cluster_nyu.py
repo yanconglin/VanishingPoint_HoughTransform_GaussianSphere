@@ -129,7 +129,7 @@ def vps_clustering(vps_prob, xyz, threshold):
     vps_cluster = np.zeros(vps_prob.shape)
     vps_cluster[inds] = labels
 
-    return xyz[vps_pd_sort], vps_cluster
+    return xyz[vps_pd_sort], vps_cluster.astype(int)
 
 
 

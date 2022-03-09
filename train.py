@@ -32,9 +32,10 @@ import numpy as np
 import torch
 import scipy.io as sio
 from docopt import docopt
+
 import vpd
 from vpd.config import C, M
-from vpd.datasets import NYUDataset, WireframeDataset, ScanNetDataset, YUDDataset
+from vpd.datasets import WireframeDataset
 
 def check_dir(dir_name):
     if not os.path.exists(dir_name):
@@ -43,6 +44,7 @@ def check_dir(dir_name):
         shutil.rmtree(dir_name)
         os.makedirs(dir_name)
 
+#
 # def git_hash():
 #     cmd = 'git log -n 1 --pretty="%h"'
 #     ret = subprocess.check_output(shlex.split(cmd)).strip()
@@ -67,7 +69,8 @@ def get_outdir(identifier):
 
 def main():
     args = docopt(__doc__)
-    config_file = args["<yaml-config>"]
+    config_file = args["<yaml-config>"] or "config/wireframe.yaml"
+    # config_file = "config/su3.yaml"
     C.update(C.from_yaml(filename=config_file))
     M.update(C.model)
     pprint.pprint(C, indent=4)
@@ -82,6 +85,7 @@ def main():
     print('num_gpus', num_gpus)
     os.environ["CUDA_VISIBLE_DEVICES"] = args["--devices"]
     if torch.cuda.is_available():
+        use_gpu=True
         device_name = "cuda"
         torch.cuda.empty_cache()
         # https://github.com/NVIDIA/pix2pixHD/issues/176
@@ -109,21 +113,12 @@ def main():
         "pin_memory": True,
     }
     
-    if C.io.dataset.upper() == "WIREFRAME":
-        Dataset = WireframeDataset
-    elif C.io.dataset.upper() == "SCANNET":
-        Dataset = ScanNetDataset
-    elif C.io.dataset.upper() == "NYU":
-        Dataset = NYUDataset
-    elif C.io.dataset.upper() == "YUD":
-        Dataset = YUDDataset
-    else:
-        raise NotImplementedError
+
     train_loader = torch.utils.data.DataLoader(
-        Dataset(datadir, split="train"), shuffle=True, **kwargs
+        WireframeDataset(datadir, split="train"), shuffle=True, **kwargs
     )
     val_loader = torch.utils.data.DataLoader(
-        Dataset(datadir, split="valid"), shuffle=False, **kwargs
+        WireframeDataset(datadir, split="valid"), shuffle=False, **kwargs
     )
     epoch_size = len(train_loader)
     print('epoch_size: train/valid',  len(train_loader), len(val_loader))
@@ -139,6 +134,7 @@ def main():
     print('vote_ht_dict  memory MB', vote_ht_dict["vote_mapping"].size(),
           vote_ht_dict["vote_mapping"].element_size() * vote_ht_dict["vote_mapping"].nelement() / (1024 * 1024))
 
+
     npzfile = np.load(C.io.sphere_mapping, allow_pickle=True)
     sphere_neighbors = npzfile['sphere_neighbors']
     vote_sphere_dict={}
@@ -149,6 +145,7 @@ def main():
           vote_sphere_dict["vote_mapping"].element_size() * vote_sphere_dict["vote_mapping"].nelement() / (1024 * 1024))
 
     # 2. model
+    # check_dir('cache')
     if M.backbone == "stacked_hourglass":
         backbone = vpd.models.hg(
             planes=128, depth=M.depth, num_stacks=M.num_stacks, num_blocks=M.num_blocks
@@ -164,9 +161,9 @@ def main():
     # print('model', model)
     ##### number of parameters in a model
     total_params = sum(p.numel() for p in model.parameters())
-    print('num of total parameters', total_params)
     ##### number of trainable parameters in a model
     train_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print('num of total parameters', total_params)
     print('num of trainable parameters', train_params)
     
     # 3. optimizer

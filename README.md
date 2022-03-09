@@ -109,7 +109,7 @@ python demo.py -d 0  config/nyu.yaml  path/to/nyu/checkpoint_latest.pth.tar exam
 
 
 ## Questions:
-### (1) Where to find the source code for the Multi-scale version?
+### (1) Where to find the Multi-Scale version?
 Please check the `multi_scale` branch.
 
 ### (2) Details about focal length.

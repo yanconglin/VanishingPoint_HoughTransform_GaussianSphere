@@ -18,7 +18,7 @@ from scipy.interpolate import griddata
 def cos_cdis(x, y, semi_sphere=False):
     # https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html#scipy.spatial.distance.cdist
     ### scipy: same 0, opposite 2, orthorgonal 1, dist = 1-AB/(|A||B|)
-    dist_cos = scipy_spatial_dist.cdist(x, y, 'cosine')  # num_points_ x num_points
+    dist_cos = scipy_spatial_dist.cdist(x, y, 'cosine') 
     dist_cos *= -1.0
     dist_cos += 1.0
 
@@ -27,8 +27,6 @@ def cos_cdis(x, y, semi_sphere=False):
     return dist_cos_arc
 
 def catersian_to_sphere(xyz):
-    #  input: xyz, nx3, in the gaussian_catersian coordinate
-    #  output: angles, (alpha, beta), nx2, on the gaussian sphere
     #  beta: elevation; alpha: azimuth.
     ### norm = [sin(alpha)cos(beta), sin(beta), cos(alpha)cos(beta)]
     num_points = len(xyz)
@@ -37,13 +35,10 @@ def catersian_to_sphere(xyz):
     inner = xyz[:,0] / np.cos(angle[:,1])
     inner = np.clip(inner, a_min=-1.0, a_max=1.0)
     angle[:,0] = np.arcsin(inner)
-    # print("angle", angle)
     return angle
 
 
 def sphere_to_catesian(angles):
-    #  input: angles (alphas, betas), nx2, on the gasussian sphere
-    #  output: xyz (x,y,z), nx3, in the catersian coordinate
     #  beta: elevation; alpha: azimuth.
     ### n = [sin(alpha)cos(beta), sin(beta), cos(alpha)cos(beta)]
     num_points = len(angles)
@@ -59,7 +54,6 @@ def gold_spiral_sampling_patch(v, alpha, num_pts):
     v1 = orth(v)
     v2 = np.cross(v, v1)
     v, v1, v2 = v[:, None], v1[:, None], v2[:, None]
-    # print('v, v1, v2', v, v1, v2)
     # indices = np.arange(num_pts) + 0.66
     indices = np.arange(num_pts) + 0.5
     phi = np.arccos(1 + (np.cos(alpha) - 1) * indices / num_pts)
@@ -85,9 +79,7 @@ def hough_transform(rows, cols, theta_res, rho_res):
 
     theta = np.linspace(0, 180.0, int(np.ceil(180.0 / theta_res) + 1.0))+0.5
     theta = theta[0:len(theta) - 1]
-    # print('theta', theta)
     D = np.sqrt((rows//2 +0.5) ** 2 + (cols//2+0.5) ** 2)
-    # print('D', D)
     rho = np.arange(-D, D+rho_res, rho_res)
     # print('rho', rho)
 
@@ -106,14 +98,12 @@ def hough_transform(rows, cols, theta_res, rho_res):
     coords[:,1] = coords[:,1] - cols//2
 
     vote_map = (coords @ sin_cos).astype(np.float32)
-    # print('rows, cols, h, w', rows, cols, h, w)
 
     mapping = []
     for i in range(rows*cols):
         print('ith pixel', i//cols, i%cols)
         for j in range(w):
             rhoVal = vote_map[i, j]
-            # print('rhoVal', rhoVal, rho.max(), rho.min())
             assert rhoVal<=rho.max() or rhoVal>=rho.min()
             # rhoIdx = np.nonzero(np.abs(rho - rhoVal) == np.min(np.abs(rho - rhoVal)))[0]
             dis = (rho - rhoVal)
@@ -124,9 +114,6 @@ def hough_transform(rows, cols, theta_res, rho_res):
 
 
 def compute_normal(mapping_ht, h_img, w_img, h_ht, w_ht, rhos, thetas, focal_length):
-    # mapping_ht: [N, 3]
-    # ht_norm: [h_ht, w_ht, 3]
-
     ht_normal = np.zeros((h_ht, w_ht, 3))
     ht_bin_invalid =[]
 
@@ -140,17 +127,16 @@ def compute_normal(mapping_ht, h_img, w_img, h_ht, w_ht, rhos, thetas, focal_len
             theta = thetas[i]
             # print('rho, theta', rho, theta)
             # line parameterization: rho = xcos theta + y sin theta
-            # [x,0]/[0, y]: [0, rho/sin_theta] and [rho/cos_theta, 0/]
             sin_theta, cos_theta = np.sin(theta*np.pi/180.0), np.cos(theta*np.pi/180.0)
             # warning: check edge cases:
             if sin_theta ==0.0: sin_theta+=1e-16
             if cos_theta ==0.0: cos_theta+=1e-16
             sin_theta = np.sign(sin_theta) * max(np.abs(sin_theta), 1e-16)
             cos_theta = np.sign(cos_theta) * max(np.abs(cos_theta), 1e-16)
-            # print('sin_theta', sin_theta, cos_theta)
 
             valid_points = []
-            ### image coordinate (x-y), where the origin is the image center
+            # This calculation is tedious, but it is easier to debug/visualize
+            ### coordinate (x-y), where the origin is the image center
             # x [-w_img//2+0.5, w_img//2-0.5]
             # y [-h_img//2+0.5, h_img//2-0.5]
             x_boundary = (rho-(h_img//2-0.5)*sin_theta)/cos_theta # [x, h_img//2]
@@ -169,26 +155,9 @@ def compute_normal(mapping_ht, h_img, w_img, h_ht, w_ht, rhos, thetas, focal_len
                 ht_bin_invalid.append([j,i])
                 continue
             valid_points = np.array(valid_points)
-            # I know this calculation is tedious/stupid, but it is easier to debug/visualize
-            # if len(valid_points)>=1 and i>0:
-            #     ### change to rows and cols
-            #     image_points = valid_points.copy()
-            #     image_points[:, 1] *= -1
-            #     image_points[:, 1] += h_img//2
-            #     image_points[:, 0] += w_img//2
-            #     fig = plt.figure()
-            #     ax = fig.add_subplot(111)
-            #     ax.imshow(vote_image)
-            #     # ax.scatter(0, image_points, c ='r')
-            #     # ax.scatter(0, x_half, c='g')
-            #     # ax.scatter(y_half, w_img-1, c='b')
-            #     ax.scatter(image_points[:,0], image_points[:,1], c ='r')
-            #     ax.scatter(30, 50)
-            #     plt.show()
 
-            # Again: tedious/stupid calculation, not necessary at all
-            # here I chose the longest line segment
-            # you can simply select any two.
+            # Again: tedious calculation, not necessary at all
+            # here I chose the longest line segment, you can simply select any two.
             if len(valid_points)>2:
                 dist01 = np.linalg.norm(valid_points[0,:] - valid_points[1,:])
                 dist02 = np.linalg.norm(valid_points[0,:] - valid_points[2,:])
@@ -205,11 +174,9 @@ def compute_normal(mapping_ht, h_img, w_img, h_ht, w_ht, rhos, thetas, focal_len
             normal_vector /= max(np.linalg.norm(normal_vector), 1e-16)
             if normal_vector[2]<0.0: normal_vector *= -1
             ht_normal[j,i]=normal_vector
-            # print('normal_vector', points, normal_vector)
 
             # vote_image = vote_index_ht[:, :, i] == j
             # vote_image = vote_image.astype(np.float32)
-            # if vote_image.sum()<16: continue
             # fig, axs = plt.subplots(1,2)
             # axs = axs.ravel()
             # ax = axs[0]
@@ -236,7 +203,6 @@ def compute_sphere(ht_normal, num_samples):
 
     h, w, _= ht_normal.shape
     for i in range(0, h*w):
-    # for i in np.random.randint(low=100, high=h*w, size=(100)):
         cur_xyz = []
         norm_vector = ht_normal[i//w, i%w, :]
         if not np.sum(np.abs(norm_vector)) > 0.0: continue  # invalid ht bins
@@ -334,13 +300,12 @@ def compute_sphere(ht_normal, num_samples):
         all_hw_xyz.append(cur_hw_xyz)
     all_hw_xyz = np.vstack(all_hw_xyz)
     print('all_hw_xyz', all_hw_xyz.shape)
-    return all_hw_xyz.astype(np.float32)
+    return all_hw_xyz.astype(np.float32) # [M, 4]
 
 
+### find nearest neighbors on the sphere for each hw_xyz in all_hw_xyz
 def find_nn_neighbors_sphere(all_hw_xyz, xyz):
-    ### find nearest neighbors for each hw_xyz in all_hw_xyz
-    # all_hw_xyz: Mx4
-    # xyz: Nx3, sampled spherical points (fibonacci lattice)
+
     if use_gpu is True or device_name=='cuda':
         torch.cuda.empty_cache()
         all_hw_xyz = torch.from_numpy(all_hw_xyz).float().cuda()
@@ -359,7 +324,6 @@ def find_nn_neighbors_sphere(all_hw_xyz, xyz):
     max_length = 0    
     total_length = 0
     for hw_ind in range(0, max_hw):
-        print('ind', hw_ind, max_hw)
         hw_inds = all_hw==hw_ind
         if hw_inds.sum()==0.0: continue
         clip_xyz = all_xyz[hw_inds,:]
@@ -387,14 +351,13 @@ def find_nn_neighbors_sphere(all_hw_xyz, xyz):
         # memory = torch.cuda.max_memory_allocated() / 1024.0 / 1024.0 / 1024.0
         # print('max_memory_allocated', memory)
             
-    mapping = np.concatenate(mapping, axis=0)
+    mapping = np.concatenate(mapping, axis=0) # [M, 3] 
     print('mapping, max_length, total_length', mapping.shape, max_length, total_length)
     return mapping
 
 
 ### re-arrange for efficient sampling
 def rearrange(sphere_neighbors, fibonacci_xyz):
-    # sphere_neighbors: Mx3 (ht_inds, fibonacci_inds, weight)
 
     max_len = 0
     for i, xyz in enumerate(fibonacci_xyz):
@@ -407,10 +370,9 @@ def rearrange(sphere_neighbors, fibonacci_xyz):
     mapping.fill(-1.0)
     mapping_non = []
     for i, xyz in enumerate(fibonacci_xyz):
-        print('i', i)
         inds = sphere_neighbors[:, 1] == i
         if inds.sum()==0:
-            mapping_non.append(i)
+            mapping_non.append(i) # spherical points w/o votes
             continue
         ht = sphere_neighbors[inds, 0]
         weights = sphere_neighbors[inds, 2]
@@ -471,71 +433,14 @@ def main(opt):
 
 
     ################ normal #####################################
-    # # ht_npz_name = f"ht_{rows:d}_{cols:d}_{h:d}_{w:d}.npz"
-    # # ht_npz_file = np.load(os.path.join(save_dir, ht_npz_name), allow_pickle=True)
-    # # mapping_ht = ht_npz_file['ht_mapping']
-    # # mapping_ht = mapping_ht.astype(np.float32)
-    # # h, w = ht_npz_file["h"], ht_npz_file["w"]
-    # # theta_res, rho_res = ht_npz_file["theta_res"], ht_npz_file["rho_res"]
-    # # rho, theta = ht_npz_file["rho"], ht_npz_file["theta"]
-
     ht_normal = compute_normal(mapping_ht, rows, cols, h, w, rho, theta, focal_length)
     print('ht_normal', ht_normal.shape, (ht_normal.sum(axis=-1) == 0.0).sum())
 
-    # # no need to save those intermediate variables, debug only
-    # norm_npz_name = f"ht_normal_{h:d}_{w:d}.npz"
-    # np.savez(os.path.join(save_dir, norm_npz_name),
-    #          ht_normal=ht_normal,
-    #          focal_length=focal_length,
-    #          rho=rho,
-    #          theta=theta,
-    #          rows=rows,
-    #          cols=cols,
-    #          h=h,
-    #          w=w,
-    #          theta_res=theta_res,
-    #          rho_res=rho_res)
-
     ################ SPHERE #####################################
-    # normal_npz_name = f"ht_normal_{h:d}_{w:d}.npz"
-    # normal_npz_file = np.load(os.path.join(save_dir, normal_npz_name), allow_pickle=True)
-    # ht_normal = normal_npz_file['ht_normal']
-    # focal_length = normal_npz_file['focal_length']
-    # h, w = normal_npz_file['h'], normal_npz_file['w']
-    # ht_normal = ht_normal.astype(np.float32)
-    
     all_hw_xyz = compute_sphere(ht_normal, num_samples=num_samples)
     print('all_hw_xyz', all_hw_xyz.shape)
 
-    # # no need to save those intermediate variables, debug only
-    # sphere_npz_name = f"sphere_{h:d}_{w:d}_{num_samples:d}.npz"
-    # np.savez(os.path.join(save_dir, sphere_npz_name),
-    #          sphere_mapping=all_hw_xyz,
-    #          focal_length=focal_length,
-    #          num_samples = num_samples,
-    #          h=h,
-    #          w=w)
-    
     ############## SPHERE FIND NN NEIGHBORS #####################################
-    # sphere_npz_name = f"sphere_{h:d}_{w:d}_{num_samples:d}.npz"
-    # sphere_npz_file = np.load(os.path.join(save_dir, sphere_npz_name), allow_pickle=True)
-    # focal_length = sphere_npz_file['focal_length']
-    # all_hw_xyz = sphere_npz_file['sphere_mapping']
-    # all_hw_xyz = all_hw_xyz.astype(np.float32)
-
-    # for i in range(100, h*w):
-    #     inds = all_hw_xyz[:,0]==i
-    #     if inds.sum()==0: continue
-    #     print('inds', inds.sum())
-    #     xyz = all_hw_xyz[inds, 1:4]
-    #     fig = plt.figure()
-    #     ax = fig.add_subplot(121, projection='3d')
-    #     ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2])
-    #     ax = fig.add_subplot(122)
-    #     # ax.scatter(angle_v[:, 0], angle_v[:, 1])
-    #     # ax.scatter(angle_c[:, 0], angle_c[:, 1])
-    #     plt.show()
-
     sphere_neighbors = find_nn_neighbors_sphere(all_hw_xyz, fibonacci_xyz)
     print('sphere_neighbors', sphere_neighbors.shape)
 
@@ -549,23 +454,23 @@ def main(opt):
                 sphere_neighbors_weight=sphere_neighbors)
                 
                 
-    ##################### rearrange fucniton ##########################################################################################
-    # sphere_neighbors_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_nn.npz"
-    # sphere_neighbors_npzfile = np.load(os.path.join(dir_name, sphere_neighbors_npz_name), allow_pickle=True)
-    # sphere_neighbors = sphere_neighbors_npzfile['sphere_neighbors']
-    # print('sphere_neighbors', sphere_neighbors.shape, fibonacci_xyz.shape)
+    ############ rearrange fucniton ##############################################
+    # # sphere_neighbors_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_nn.npz"
+    # # sphere_neighbors_npzfile = np.load(os.path.join(dir_name, sphere_neighbors_npz_name), allow_pickle=True)
+    # # sphere_neighbors = sphere_neighbors_npzfile['sphere_neighbors']
+    # # print('sphere_neighbors', sphere_neighbors.shape, fibonacci_xyz.shape)
 
-    sphere_neighbors_re = rearrange(sphere_neighbors, fibonacci_xyz)
-    rearrange_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_rearrange.npz"
-    np.savez(os.path.join(dir_name, rearrange_npz_name),
-             h=h, w=w,
-             num_points=num_points,
-             num_samples=num_samples,
-             xyz=fibonacci_xyz,
-             focal_length=focal_length,
-             sphere_neighbors=sphere_neighbors_re)
-             
-             
+    # sphere_neighbors_re = rearrange(sphere_neighbors, fibonacci_xyz)
+    # rearrange_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_rearrange.npz"
+    # np.savez(os.path.join(dir_name, rearrange_npz_name),
+    #          h=h, w=w,
+    #          num_points=num_points,
+    #          num_samples=num_samples,
+    #          xyz=fibonacci_xyz,
+    #          focal_length=focal_length,
+    #          sphere_neighbors=sphere_neighbors_re)
+    #          
+    #          
 
 if __name__ == "__main__":
 

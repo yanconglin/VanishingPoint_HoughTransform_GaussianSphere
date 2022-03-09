@@ -110,7 +110,7 @@ python demo.py -d 0  config/nyu.yaml  path/to/nyu/checkpoint_latest.pth.tar exam
 
 ## Questions:
 ### (1) Where to find the source code for the Multi-scale version?
-The Multi-scale version will be released later.
+Please check the `multi_scale` branch.
 
 ### (2) Details about focal length.
 The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are image height/width). Knowing focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. Given a focal length, you can use [to_pixel](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/3e8d6c9442d8366a30a09f4386b1503d9cc1781f/parameterization.py#L78) to back-project a VP on the image plane.

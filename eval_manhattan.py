@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Compute vanishing points using corase-to-fine method on the evaluation dataset.
+"""Detect vanishing points with the Manhattan assumption.
 Usage:
-    eval.py [options] <yaml-config> <checkpoint>
-    eval.py ( -h | --help )
+    eval_manhattan.py [options] <yaml-config> <checkpoint>
+    eval_manhattan.py ( -h | --help )
 
 Arguments:
    <yaml-config>                 Path to the yaml hyper-parameter file

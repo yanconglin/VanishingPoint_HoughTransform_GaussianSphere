@@ -549,23 +549,23 @@ def main(opt):
                 sphere_neighbors_weight=sphere_neighbors)
                 
                 
-    ##################### rearrange fucniton ##########################################################################################
-    # sphere_neighbors_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_nn.npz"
-    # sphere_neighbors_npzfile = np.load(os.path.join(dir_name, sphere_neighbors_npz_name), allow_pickle=True)
-    # sphere_neighbors = sphere_neighbors_npzfile['sphere_neighbors']
-    # print('sphere_neighbors', sphere_neighbors.shape, fibonacci_xyz.shape)
+    # ##################### rearrange fucniton ##########################################################################################
+    # # sphere_neighbors_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_nn.npz"
+    # # sphere_neighbors_npzfile = np.load(os.path.join(dir_name, sphere_neighbors_npz_name), allow_pickle=True)
+    # # sphere_neighbors = sphere_neighbors_npzfile['sphere_neighbors']
+    # # print('sphere_neighbors', sphere_neighbors.shape, fibonacci_xyz.shape)
 
-    sphere_neighbors_re = rearrange(sphere_neighbors, fibonacci_xyz)
-    rearrange_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_rearrange.npz"
-    np.savez(os.path.join(dir_name, rearrange_npz_name),
-             h=h, w=w,
-             num_points=num_points,
-             num_samples=num_samples,
-             xyz=fibonacci_xyz,
-             focal_length=focal_length,
-             sphere_neighbors=sphere_neighbors_re)
-             
-             
+    # sphere_neighbors_re = rearrange(sphere_neighbors, fibonacci_xyz)
+    # rearrange_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_rearrange.npz"
+    # np.savez(os.path.join(dir_name, rearrange_npz_name),
+    #          h=h, w=w,
+    #          num_points=num_points,
+    #          num_samples=num_samples,
+    #          xyz=fibonacci_xyz,
+    #          focal_length=focal_length,
+    #          sphere_neighbors=sphere_neighbors_re)
+    #          
+    #          
 
 if __name__ == "__main__":
 

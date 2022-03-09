@@ -20,18 +20,17 @@ from vpd.models.sphere.sphere_utils import gold_spiral_sampling_patch, catersian
 def compute_nn_neighbors(xyz1, xyz2):
     # # # find nearest neighbors of xyz1 in xyz2
     ### compute cosine distance: same 0, orthorgonal 1, opposite 2, dist = 1-AB/(|A||B|)
-    cos_dis = scipy_spatial_dist.cdist(xyz1, xyz2, 'cosine')  # num_points_ x num_points
+    cos_dis = scipy_spatial_dist.cdist(xyz1, xyz2, 'cosine')
     # ### map to: same 1, opposite -1, orthorgonal 0, dist = AB/(|A||B|)
     cos_dis *= -1.0
     cos_dis += 1.0
-    cos_dis = np.abs(cos_dis)  # larger is nearer
+    cos_dis = np.abs(cos_dis)
     cos_dis = np.clip(cos_dis, a_min=0.0, a_max=1.0)
     max_error, max_idx = cos_dis.max(axis=1), cos_dis.argmax(axis=1)
     return max_error, max_idx
 
 
 def compute_topk_neighbors_self(xyz, num_neighbors):
-    angles = catersian_to_sphere(xyz)
     cos_dis = xyz @ xyz.T
     cos_dis = 1.0 - np.abs(cos_dis)
     # # https://stackoverflow.com/questions/6910641/how-do-i-get-indices-of-n-maximum-values-in-a-numpy-array
@@ -40,25 +39,6 @@ def compute_topk_neighbors_self(xyz, num_neighbors):
     edges = np.stack([cur_node, topk_ind.flatten()], axis=0)
     # print('edges', edges.shape)
 
-    # # for k in range(0, len(xyz)):
-    # for k in np.random.randint(0, len(xyz), size=(3)):
-    #     mask = edges.reshape(2, len(xyz), -1)[1,k]
-    #     print('mask', mask)
-    #     fig = plt.figure()
-    #     ax = fig.add_subplot(121, projection='3d')
-    #     ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2],c='b')
-    #     ax.scatter(xyz[mask, 0], xyz[mask, 1], xyz[mask, 2],c='g')
-    #     ax.scatter(xyz[k, 0], xyz[k, 1], xyz[k, 2], c='r')
-    #     # ax.set_title('nearby_nodes')
-    #     # ax.axis('off')
-    #     ax = fig.add_subplot(122)
-    #     ax.scatter(angles[:, 0], angles[:, 1], c='b')
-    #     ax.scatter(angles[mask, 0], angles[mask, 1], c='g')
-    #     ax.scatter(angles[k, 0], angles[k, 1], c='r')
-    #     # ax.set_title('nearby_nodes')
-    #     # ax.axis('off')
-    #     plt.suptitle('angle '+ str(k))
-    #     plt.show()
     return edges
 
 
@@ -82,7 +62,7 @@ def compute_scale_last(xyz, num_nodes):
         cos_dis = np.abs(cos_dis).flatten()  # [N]
         cos_dis = np.clip(cos_dis, a_min=0.0, a_max=1.0)
         cos_dis *= -1
-        cos_dis += 1  # 1-|AB/|A||B||  # smaller is nearer
+        cos_dis += 1  
         ########################################################################################
         ### select topk nearby nodes for each input node
         # # https://stackoverflow.com/questions/6910641/how-do-i-get-indices-of-n-maximum-values-in-a-numpy-array
@@ -117,7 +97,6 @@ class WireframeDataset(Dataset):
             self.size = len(self.filelist)
             print("subset for training: percentage ", C.io.percentage, num_train)
         if split == "valid":
-            # ### to debug
             self.filelist = [f for f in filelist[division:division*2] if "a1" not in f]
             self.size = len(self.filelist)
         if split == "test":

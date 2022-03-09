@@ -278,7 +278,7 @@ def compute_sphere(ht_normal, num_samples):
             x_z = norm_vector[0] / max(norm_vector[2], 1e-16) if norm_vector[2] >= 0 else norm_vector[0] / min(norm_vector[2], -1e-16)
             phi = np.arctan(x_z)  # [-pi/2, pi/2]
 
-            # Symmetry of cosine
+            # Symmetry/periodicity of cosine
             alphas_f1 = alphas_phi + phi
             alphas_f2 = -1.0*alphas_phi + phi
             # (1) choose alphas_f2 if alphas_f1>=np.pi/2 OR <-np.pi/2

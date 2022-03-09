@@ -104,7 +104,7 @@ Tab 1&2 show that quantization at 128x128 is already sufficient for a decent res
 
 
 ### (3) What are the tricks for the speedup?
-They are all in the dataloader, starting from [this line](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/f2873d1f47d92b190350301ef96e0b894c606507/vpd/datasets.py#L131) and [this line](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/f2873d1f47d92b190350301ef96e0b894c606507/vpd/datasets.py#L201). This is an extension of the work in the main branch, where we pre-sample 32768/16384 points on the hemisphere. 
+They are all in the dataloader, starting from [this line](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/f2873d1f47d92b190350301ef96e0b894c606507/vpd/datasets.py#L131) and [this line](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/f2873d1f47d92b190350301ef96e0b894c606507/vpd/datasets.py#L201). This is an extension of our work in the main branch, where we pre-sample 32768/16384 points on the hemisphere. 
 
 
 ### (4) Code for other baselines.

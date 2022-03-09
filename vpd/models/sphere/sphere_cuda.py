@@ -6,6 +6,15 @@ from torch.nn.modules.utils import _pair
 from .ht2sphere import HT2SPHERE
 
 class SPHERE_CUDA(nn.Module):
+    """ mapping from HT to Sphere 
+        input: HT feaures [b, c, h, w]
+        output: Sphere feaures [b, c, num_points]
+        precalulation: vote_mapping [?, 3]
+        [:,0]: HT index
+        [:,1]: Spherical point index
+        [:,2]: weight, cos dis to the nn spherical point (fibonacci lattice)
+
+    """
 
     def __init__(self, vote_mapping_dict):
         super(SPHERE_CUDA, self).__init__()
@@ -29,7 +38,7 @@ class SPHERE_CUDA(nn.Module):
     #     out = self.sphere(x)
     #     return out
 
-    # there might be an error for 256x256: launching too many threads; a naive way to solve
+    # there might be an error for 256x256: launching too many cores; a naive way to solve.
     def forward(self, x):
         batch, channel, h, w = x.shape
         assert channel % 4 == 0

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compute vanishing points using corase-to-fine method on the evaluation dataset.
+"""Detect vanishing points in non-Manhattan world.
 Usage:
     eval.py [options] <yaml-config> <checkpoint>
     eval.py ( -h | --help )

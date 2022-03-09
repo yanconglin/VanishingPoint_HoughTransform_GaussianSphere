@@ -2,6 +2,9 @@
 
 Official implementation: [Deep vanishing point detection: Geometric priors make dataset variations vanish](), CVPR'22 
 
+(Final check ongoing... camera-ready not yet available at this moment.)
+
+
 [Yancong Lin](https://yanconglin.github.io/), [Ruben Wiersma](https://rubenwiersma.nl/), [Silvia Laura Pintea](https://silvialaurapintea.github.io/), [Klaus Hildebrandt](https://graphics.tudelft.nl/~klaus/), [Elmar Eisemann](https://graphics.tudelft.nl/~eisemann/) and [Jan C. van Gemert](http://jvgemert.github.io/)
 
 E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
@@ -38,7 +41,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
 We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
 
 ### Installation
-For the ease of reproducibility, you are suggested to install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/) if you prefer) before executing the following commands. Our code has been tested with CUDA-10.2 and devtoolset-6.
+For the ease of reproducibility, you are suggested to install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/) if you prefer) before executing the following commands. Our code has been tested with miniconda/3.9, CUDA/10.2 and devtoolset/6.
 
 ```bash
 conda create -y -n vpd
@@ -96,7 +99,7 @@ python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/
 python cluster_nyu.py --datadir path/to/nyu/data --pred_dir path/to/result_folder 
 ```
 
-You can also download our pre-trained models and results from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
+You can also download our checkpoints/results/logs from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
 
 ### ToDo: VP detection for Your Own Images
@@ -108,11 +111,22 @@ You can also download our pre-trained models and results from [SURFdrive](https:
 The Multi-scale version will be released later.
 
 ### (2) Details about focal length.
-The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are the image height/width). Knowing the focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. 
+The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are the image height/width). Knowing the focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. Given a focal length, you can use [to_pixel](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/3e8d6c9442d8366a30a09f4386b1503d9cc1781f/parameterization.py#L78) to back-project a VP on the image plane.
 
 ### (3) Focal length unknown/uncalibrated images.
-In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might need to think about how to find VPs without the Manhattan assumption. One solition is clustering as shown on the NYU dataset. A second solution could be simply picking up the top-k VPs (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49), where you can choose the top-k VPs that are equally spread over the hemisphere). There are other solutions as well. Unfortunately, without more knowledge, I can not tell you which solution is a better one.
+In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might need to think about how to find VPs without the Manhattan assumption. One solution is clustering as shown on the NYU dataset. A second solution could be simply picking up the top-k VPs (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49) assuming they are equally spread over the hemisphere). There are other solutions as well. The best solution may differ from case to case. 
 
+### (4) Details about sampling/quantization.
+Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
+SU3 (*Ours**): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 128x128 - 184x180 - 32768;<br/>
+SU3 (*Ours*): &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>
+ScanNet (*Ours*):&nbsp;&nbsp; &nbsp;&nbsp;256x256 - 365x180 - 16384; (coarse VPs, estimated from surface normals)<br/>
+NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768;<br/>
+
+Tab 1&2 show that quantization at 128x128 is already sufficient for a decent result. Moreover training/inference time decreases significantly (x2), comparing to 256x256. However, quantization has always been a weakness for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
+
+### (5) Code for other baselines.
+[J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?]();
 
 ### Citation
 If you find our paper useful in your research, please consider citing:

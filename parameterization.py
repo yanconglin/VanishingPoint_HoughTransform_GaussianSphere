@@ -75,6 +75,12 @@ def orth(v):
     return o
 
 
+def to_pixel(vpts, focal_length=1.0, h=480, w=640):
+    x = vpts[:,0] / vpts[:, 2] * focal_length * max(h, w)/2.0 + w//2
+    y = -vpts[:,1] / vpts[:, 2] * focal_length * max(h, w)/2.0 + h//2
+    return y, x
+
+
 def hough_transform(rows, cols, theta_res, rho_res):
 
     theta = np.linspace(0, 180.0, int(np.ceil(180.0 / theta_res) + 1.0))+0.5
@@ -272,7 +278,7 @@ def compute_sphere(ht_normal, num_samples):
             x_z = norm_vector[0] / max(norm_vector[2], 1e-16) if norm_vector[2] >= 0 else norm_vector[0] / min(norm_vector[2], -1e-16)
             phi = np.arctan(x_z)  # [-pi/2, pi/2]
 
-            # Symmetry of cosine
+            # Symmetry/periodicity of cosine
             alphas_f1 = alphas_phi + phi
             alphas_f2 = -1.0*alphas_phi + phi
             # (1) choose alphas_f2 if alphas_f1>=np.pi/2 OR <-np.pi/2
@@ -386,6 +392,36 @@ def find_nn_neighbors_sphere(all_hw_xyz, xyz):
     return mapping
 
 
+### re-arrange for efficient sampling
+def rearrange(sphere_neighbors, fibonacci_xyz):
+    # sphere_neighbors: Mx3 (ht_inds, fibonacci_inds, weight)
+
+    max_len = 0
+    for i, xyz in enumerate(fibonacci_xyz):
+        print('i', i)
+        inds = sphere_neighbors[:, 1]==i
+        max_len = max(max_len, inds.sum())
+    print('max_len', max_len)
+    
+    mapping = np.zeros((len(fibonacci_xyz), max_len, 2))
+    mapping.fill(-1.0)
+    mapping_non = []
+    for i, xyz in enumerate(fibonacci_xyz):
+        print('i', i)
+        inds = sphere_neighbors[:, 1] == i
+        if inds.sum()==0:
+            mapping_non.append(i)
+            continue
+        ht = sphere_neighbors[inds, 0]
+        weights = sphere_neighbors[inds, 2]
+        mapping[i, 0:inds.sum(), 0] = ht
+        mapping[i, 0:inds.sum(), 1] = weights
+
+    print('mapping_non', mapping_non)
+    print('mapping', mapping.shape)
+    return votes
+
+###########################################################
 def main(opt):
     ### Initialize seeds: this is important!
     random.seed(0)
@@ -518,8 +554,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--save_dir', default='/home/yancong/Desktop/unit', help='path to save parameterizations')
-    # parser.add_argument('--save_dir', default='/tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/VPS_code/scannet', help='path to save parameterizations')
+    parser.add_argument('--save_dir', default='/parameterization/unit_focal_length', help='path to save parameterizations')
     parser.add_argument('--focal_length', type=float, default=1.0, help='focal length, set to 1.0 if unknown')
     parser.add_argument('--rows', type=int, default=256, help='rows - image height')
     parser.add_argument('--cols', type=int, default=256, help='cols - image width')

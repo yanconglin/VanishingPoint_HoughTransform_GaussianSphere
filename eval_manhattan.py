@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Compute vanishing points using corase-to-fine method on the evaluation dataset.
+"""Detect vanishing points with the Manhattan assumption.
 Usage:
-    eval.py [options] <yaml-config> <checkpoint>
-    eval.py ( -h | --help )
+    eval_manhattan.py [options] <yaml-config> <checkpoint>
+    eval_manhattan.py ( -h | --help )
 
 Arguments:
    <yaml-config>                 Path to the yaml hyper-parameter file
@@ -13,9 +13,6 @@ Options:
    -d --devices <devices>        Comma seperated GPU devices [default: 0]
    -o --output <output>          Path to the output AA curve [default: error.npz]
    --dump <output-dir>           Optionally, save the vanishing points to npz format.
-                                 The coordinate of VPs is in the camera space, see
-                                 `to_label` and `to_pixel` in vpd/models/vanishing_net.py
-                                 for more details.
    --noimshow                    Do not show result
 """
 
@@ -201,7 +198,7 @@ def main():
         vpts_gt = vpts_gt.cpu().numpy()
 
         for idx, (pred, target, vpt_gt) in enumerate(zip(preds, targets, vpts_gt)):
-            vpt_pd, vps_idx = topk_orthogonal_vps(pred, xyz, num_vps=C.io.num_vpts)
+            vpt_pd, vpt_idx = topk_orthogonal_vps(pred, xyz, num_vps=C.io.num_vpts)
             error = compute_error(vpt_pd, vpt_gt)
             errors.append(error)
 

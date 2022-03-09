@@ -134,4 +134,4 @@ dependencies:
   - zfp=0.5.5=h295c915_6
   - zlib=1.2.11=h7f8727e_4
   - zstd=1.4.9=haebb681_0
-prefix: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/envs/vpd
+

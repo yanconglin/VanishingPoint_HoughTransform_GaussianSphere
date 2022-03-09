@@ -73,7 +73,6 @@ def main():
     pprint.pprint(C, indent=4)
     resume_from = C.io.resume_from
 
-    # FIXME: not deterministic
     random.seed(0)
     np.random.seed(0)
     torch.manual_seed(0)

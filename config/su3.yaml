@@ -1,0 +1,47 @@
+io:
+  # tensorboard_port: 0
+  resume_from: 
+  num_workers: 2
+  logdir: logs/
+  dataset: Wireframe
+  datadir: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/dataset/su3
+  ht_mapping: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/vote_mapping/su3_new/128_128_184_180_1024_32768/ht_128_128_184_180.npz
+  sphere_mapping: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/vote_mapping/su3_new/128_128_184_180_1024_32768/sphere_neighbors_184_180_32768_nn_rearrange.npz
+  focal_length: 2.1875
+  num_vpts: 3
+  percentage: 1.0
+  total_nodes: 32768  # - 0.7127475461050946
+  # total_nodes: 16384  # - 1.0077734139879833
+  theta: 0.7127475461050946
+  num_nodes: 
+    - 512 # 6.242524998665826
+    - 128 # 0.9587939915245041
+    - 128 # 0.1474047296601143
+  num_neighbors: 
+    - 16
+    - 16
+    - 16
+    - 16
+  thetas:
+    # those magic numbers are calculated by misc/find-radius.py
+   - 90.0
+   - 6.242524998665826
+   - 0.9587939915245041
+   - 0.1474047296601143
+
+model:
+  batch_size: 16
+  backbone: stacked_hourglass
+  depth: 4
+  num_stacks: 1
+  num_blocks: 1
+  lpos: 1.0
+  lneg: 1.0
+
+optim:
+  name: Adam
+  lr: 4.0e-4
+  amsgrad: True
+  weight_decay: 1.0e-5
+  max_epoch: 36
+  lr_decay_epoch: 24

@@ -13,7 +13,15 @@ import os
 from .im2ht import IM2HT
 
 class HT_CUDA(nn.Module):
+    """ mapping from pixels to HT
+        input: image feaures [b, c, r, c]
+        output: HT feaures [b, c, h, w]
+        precalulation: vote_mapping [?, 3]
+        [:,0]: pixel index
+        [:,1]: HT bin index
+        [:,2]: weight estimated from quantization
 
+    """
     def __init__(self, vote_mapping_dict):
         super(HT_CUDA, self).__init__()
         self.im_size = _pair(vote_mapping_dict["im_size"])
@@ -37,7 +45,7 @@ class HT_CUDA(nn.Module):
     #     # print("ht_cuda", out.shape)
     #     return out / self.norm
 
-    # 256x256: there might be an error: launching too many threads; a naive way to solve
+    # 256x256: there might be an error: launching too many cores; a naive way to solve
     def forward(self, x):
         batch, channel, rows, cols = x.shape
         assert channel%2==0

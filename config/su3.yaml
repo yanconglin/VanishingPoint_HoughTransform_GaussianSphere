@@ -6,7 +6,7 @@ io:
   dataset: Wireframe
   datadir: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/dataset/su3
   ht_mapping: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/vote_mapping/su3_new/128_128_184_180_1024_32768/ht_128_128_184_180.npz
-  sphere_mapping: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/vote_mapping/su3_new/128_128_184_180_1024_32768/sphere_neighbors_184_180_32768_nn_rearrange.npz
+  sphere_mapping: /tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/vote_mapping/su3_new/128_128_184_180_1024_32768/sphere_neighbors_184_180_32768_rearrange.npz
   focal_length: 2.1875
   num_vpts: 3
   percentage: 1.0

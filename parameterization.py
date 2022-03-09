@@ -398,7 +398,7 @@ def rearrange(sphere_neighbors, fibonacci_xyz):
 
     max_len = 0
     for i, xyz in enumerate(fibonacci_xyz):
-        print('i', i)
+        # print('i', i)
         inds = sphere_neighbors[:, 1]==i
         max_len = max(max_len, inds.sum())
     print('max_len', max_len)
@@ -547,14 +547,32 @@ def main(opt):
                 xyz=fibonacci_xyz,
                 focal_length=focal_length,
                 sphere_neighbors_weight=sphere_neighbors)
+                
+                
+    ##################### rearrange fucniton ##########################################################################################
+    # sphere_neighbors_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_nn.npz"
+    # sphere_neighbors_npzfile = np.load(os.path.join(dir_name, sphere_neighbors_npz_name), allow_pickle=True)
+    # sphere_neighbors = sphere_neighbors_npzfile['sphere_neighbors']
+    # print('sphere_neighbors', sphere_neighbors.shape, fibonacci_xyz.shape)
 
+    sphere_neighbors_re = rearrange(sphere_neighbors, fibonacci_xyz)
+    rearrange_npz_name = f"sphere_neighbors_{h:d}_{w:d}_{num_points:d}_rearrange.npz"
+    np.savez(os.path.join(dir_name, rearrange_npz_name),
+             h=h, w=w,
+             num_points=num_points,
+             num_samples=num_samples,
+             xyz=fibonacci_xyz,
+             focal_length=focal_length,
+             sphere_neighbors=sphere_neighbors_re)
+             
+             
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description='',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--save_dir', default='/parameterization/unit_focal_length', help='path to save parameterizations')
+    parser.add_argument('--save_dir', default='/parameterization/', help='path to save parameterizations')
     parser.add_argument('--focal_length', type=float, default=1.0, help='focal length, set to 1.0 if unknown')
     parser.add_argument('--rows', type=int, default=256, help='rows - image height')
     parser.add_argument('--cols', type=int, default=256, help='cols - image width')

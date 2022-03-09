@@ -67,12 +67,12 @@ cd ..
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
 Shortcut: You can simply download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210), and place them inside the project folder, e.g. `project_folder/cache/inds/32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .
 
-Compute the mapping from pixels -HT bins - Spherical points.
-We use GPUs (Pytorch) to speed up the calculation. 
+To comute the mapping from pixels -HT bins - Spherical points, run the following command: 
 ```bash
- python parameterization.py --save_dir='parameterization/nyu/' --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=32768 # NYU as an example
+ python parameterization.py --save_dir='parameterization/' --focal_length=1.0 --rows=128 --cols=128 --num_samples=1024 --num_points=32768 # SU3 as an example
 ```
-You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210).
+We use GPUs (Pytorch) to speed up the calculation (~4 hours).
+
 
 ### (step 3) Train
 We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 
@@ -85,23 +85,18 @@ python train.py -d 0 --identifier baseline config/nyu.yaml
 ### (step 4) Test
 Manhattan world (3-orthogonal VPs):
 ```bash
-python eval_manhattan.py -d 0  -o path/to/resut.npz  path/to/config.yaml  path/to/checkpoint.pth.tar
+python eval.py -d 0  -o path/to/resut.npz  path/to/config.yaml  path/to/checkpoint.pth.tar
 ```
 
 You can also download our checkpoints/results/logs from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210).
 
 
 ## Questions:
-### (1) Where to find the source code for the Multi-scale version?
-The Multi-scale version will be released later.
-
-### (2) Details about focal length.
+### (1) Details about focal length.
 The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are image height/width). Knowing focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. Given a focal length, you can use [to_pixel](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/3e8d6c9442d8366a30a09f4386b1503d9cc1781f/parameterization.py#L78) to back-project a VP on the image plane.
 
-### (3) Focal length unknown/uncalibrated images.
 
-
-### (4) Details about sampling/quantization.
+### (2) Details about sampling/quantization.
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
 SU3 (*Ours**): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 128x128 - 184x180 - 32768;<br/>
 SU3 (*Ours*): &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>

@@ -63,14 +63,10 @@ rm *.tar.xz
 cd ..
 ```
 
-NYU/YUD: we download the data from [CONSAC](https://github.com/fkluger/nyu_vp); and then process the data. 
-```bash
-python dataset/nyu_process.py --data_dir path/to/data --save_dir path/to/processed_data --mat_file path/to/nyu_depth_v2_labeled.mat
-python dataset/yud_process.py --data_dir path/to/data --save_dir path/to/processed_data
-```
-
 
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
+Shortcut: You can simply download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210), and place them inside the project folder, e.g. `project_folder/cache/inds/32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .
+
 Compute the mapping from pixels -HT bins - Spherical points.
 We use GPUs (Pytorch) to speed up the calculation. 
 ```bash

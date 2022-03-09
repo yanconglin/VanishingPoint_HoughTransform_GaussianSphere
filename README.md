@@ -49,7 +49,6 @@ conda activate vpd
 conda env update --file environment.yml
 ```
 
-
 ### (step 1) Processing the Dataset
 
 SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to process the data. 
@@ -102,8 +101,11 @@ python cluster_nyu.py --datadir path/to/nyu/data --pred_dir path/to/result_folde
 You can also download our checkpoints/results/logs from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
 
 
-### ToDo: VP detection for Your Own Images
-
+### VP detection for your own images
+As an example, we use the pretrained model on NYU to detect VPs from image "example_yud.jpg". We visualize predictions (both VPs and the Gasussian sphere) in  "pred.png". In this example, we simply pick up the top-3 VPs. You may also condiser clustering on the hemisphere to detect multiple VPs.
+```bash
+python demo.py -d 0  config/nyu.yaml  path/to/nyu/checkpoint_latest.pth.tar example_yud.jpg
+```
 
 
 ## Questions:

@@ -554,8 +554,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--save_dir', default='/home/yancong/Desktop/unit', help='path to save parameterizations')
-    # parser.add_argument('--save_dir', default='/tudelft.net/staff-bulk/ewi/insy/VisionLab/yanconglin/vpd/VPS_code/scannet', help='path to save parameterizations')
+    parser.add_argument('--save_dir', default='/parameterization/unit_focal_length', help='path to save parameterizations')
     parser.add_argument('--focal_length', type=float, default=1.0, help='focal length, set to 1.0 if unknown')
     parser.add_argument('--rows', type=int, default=256, help='rows - image height')
     parser.add_argument('--cols', type=int, default=256, help='cols - image width')

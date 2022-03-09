@@ -76,7 +76,7 @@ We use GPUs (Pytorch) to speed up the calculation.
 ```bash
  python parameterization.py --save_dir='parameterization/nyu/' --focal_length=1.0 --rows=240 --cols=320 --num_samples=1024 --num_points=32768 # NYU as an example
 ```
-You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
+You can also download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210).
 
 ### (step 3) Train
 We conducted all experiments on either GTX 1080Ti or RTX 2080Ti GPUs. 
@@ -92,20 +92,7 @@ Manhattan world (3-orthogonal VPs):
 python eval_manhattan.py -d 0  -o path/to/resut.npz  path/to/config.yaml  path/to/checkpoint.pth.tar
 ```
 
-Non-Manhattan world (unknown number of VPs, one extra step - use DBSCAN to cluster VPs on the hemisphere):
-```bash
-python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/nyu/checkpoint.pth.tar
-python cluster_nyu.py --datadir path/to/nyu/data --pred_dir path/to/result_folder 
-```
-
-You can also download our checkpoints/results/logs from [SURFdrive](https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0).
-
-
-### Demo
-As an example, we use the pretrained model on NYU to detect VPs from image "example_yud.jpg". We visualize predictions (both VPs and the Gasussian sphere) in  "pred.png". In this example, we simply pick up the top-3 VPs. You may also condiser clustering on the hemisphere to detect multiple VPs.
-```bash
-python demo.py -d 0  config/nyu.yaml  path/to/nyu/checkpoint_latest.pth.tar example_yud.jpg
-```
+You can also download our checkpoints/results/logs from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210).
 
 
 ## Questions:
@@ -116,14 +103,12 @@ The Multi-scale version will be released later.
 The focal length in our code is in the unit of 2/max(h, w) pixel (where h, w are image height/width). Knowing focal length is a strongh prior as one can utilize the Manhattan assumption to find orthogonal VPs in the camera space. Given a focal length, you can use [to_pixel](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/3e8d6c9442d8366a30a09f4386b1503d9cc1781f/parameterization.py#L78) to back-project a VP on the image plane.
 
 ### (3) Focal length unknown/uncalibrated images.
-In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/config/nyu.yaml). You might want to think about how to find VPs without the Manhattan assumption. One simple solution could be simply picking up the top-k VPs, assuming they are more or less equally spread over the hemisphere (similar to [topk_orthogonal_vps](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/2609bfe4d8f4beefe7e75be0a5f25b5458ed83f2/eval_manhattan.py#L49)). A second (better) solution is clustering as shown on the NYU dataset. There are other solutions as well. The best solution might differ from case to case. 
+
 
 ### (4) Details about sampling/quantization.
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
 SU3 (*Ours**): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 128x128 - 184x180 - 32768;<br/>
 SU3 (*Ours*): &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>
-ScanNet (*Ours*):&nbsp;&nbsp; &nbsp;&nbsp;256x256 - 365x180 - 16384; (coarse VPs, estimated from surface normals)<br/>
-NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768;<br/>
 
 Tab 1&2 show that quantization at 128x128 is already sufficient for a decent result. Moreover training/inference time decreases significantly (x2), comparing to 256x256. However, quantization has always been a weakness for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 

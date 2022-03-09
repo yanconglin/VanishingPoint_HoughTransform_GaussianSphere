@@ -102,7 +102,7 @@ You can also download our checkpoints/results/logs from [SURFdrive](https://surf
 
 
 ### Demo
-As an example, we use the pretrained model on NYU to detect VPs from image "example_yud.jpg". We visualize predictions (both VPs and the Gasussian sphere) in  "pred.png". In this example, we simply pick up the top-3 VPs. You may also condiser clustering on the hemisphere to detect multiple VPs.
+As an example, we use the pretrained model on NYU to detect VPs from image "example_yud.jpg". We visualize predictions (both VPs and the Gasussian sphere) in  "pred.png". In this example, we do clustering on the hemisphere to detect multiple VPs.
 ```bash
 python demo.py -d 0  config/nyu.yaml  path/to/nyu/checkpoint_latest.pth.tar example_yud.jpg
 ```

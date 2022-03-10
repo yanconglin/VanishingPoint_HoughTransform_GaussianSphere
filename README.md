@@ -108,7 +108,7 @@ python demo.py -d 0  config/nyu.yaml  path/to/nyu/checkpoint_latest.pth.tar exam
 ```
 
 
-### Todo: adding further comments/clarifications.
+### Todo: add comments/clarifications.
 The pre-calculated mappings needs further exaplaination.
 
 ## Questions:

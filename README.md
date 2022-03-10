@@ -131,7 +131,7 @@ NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768;<br/>
 Tab 1&2 show that quantization at 128x128 is already sufficient for a decent result. Moreover training/inference time decreases significantly (x2), comparing to 256x256. However, quantization has always been a weakness for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 
 ### (5) Spherical mapping on-the-fly without pre-calculation .
-Unfortunately, at this momment I do not have a solution. This is also a limitation of my implementation.
+Unfortunately, I do not have a solution at this moment . This is also a limitation of my implementation.
 
 ### (6) Code for other baselines.
 [J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?](); [Haoang Li](https://sites.google.com/view/haoangli/homepage)

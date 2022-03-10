@@ -106,9 +106,11 @@ Tab 1&2 show that quantization at 128x128 is already sufficient for a decent res
 ### (3) What are the tricks for the speedup?
 They are all in the dataloader, starting from [this line](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/f2873d1f47d92b190350301ef96e0b894c606507/vpd/datasets.py#L131) and [this line](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/blob/f2873d1f47d92b190350301ef96e0b894c606507/vpd/datasets.py#L201). This is an extension of our work in the main branch, where we pre-sample 32768/16384 points on the hemisphere. 
 
+### (4) Spherical mapping on-the-fly without pre-calculation .
+Unfortunately, at this momment I do not have a solution. This is also a limitation of my implementation.
 
-### (4) Code for other baselines.
-[J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?]();
+### (5) Code for other baselines.
+[J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?](); [Haoang Li](https://sites.google.com/view/haoangli/homepage);
 
 ### Citation
 If you find our paper useful in your research, please consider citing:

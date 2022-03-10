@@ -64,13 +64,13 @@ cd ..
 
 
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
-Shortcut: You can simply download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210), and place them inside the project folder, e.g. `project_folder/cache/inds/32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .
+Shortcut: You can simply download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210), and place them inside the project folder, e.g. `project_folder/cache/inds_32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .
 
 To comute the mapping from pixels -HT bins - Spherical points, run the following command: 
 ```bash
  python parameterization.py --save_dir=parameterization/ --focal_length=1.0 --rows=128 --cols=128 --num_samples=1024 --num_points=32768 # SU3 as an example
 ```
-We use GPUs (Pytorch) to speed up the calculation (~4 hours).
+It takes ~4 hours to pre-calculate the HT and sphere mappings, and 2 hours to compute `cache/inds_32768` which saves the indices for efficient sampling at multiple scales.
 
 
 ### (step 3) Train

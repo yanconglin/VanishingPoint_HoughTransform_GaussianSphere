@@ -129,7 +129,7 @@ class HourglassNet(nn.Module):
         self.bn1 = nn.BatchNorm2d(self.inplanes)
         self.relu = nn.ReLU(inplace=True)
         
-        # self.maxpool = nn.MaxPool2d(2, stride=2)
+        # self.maxpool = nn.MaxPool2d(2, stride=2) # dowmsampling layer removed
         self.layer1 = self._make_residual(block, self.num_feats, 1)
         self.layer2 = self._make_residual(block, self.num_feats, 1)
         self.layer3 = self._make_residual(block, self.num_feats, 1)

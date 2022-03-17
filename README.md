@@ -122,8 +122,8 @@ In this case, you can set the focal length to 1.0 as in [config/nyu.yaml](https:
 Quantization details in this repo (Pixels - HT -Gaussian Sphere) are:<br/>
 SU3 (*Ours**): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 128x128 - 184x180 - 32768; (Multi-Scale version, as in the paper)<br/>
 SU3 (*Ours*): &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 256x256 - 365x180 - 32768;<br/>
-ScanNet (*Ours*):&nbsp;&nbsp; &nbsp;&nbsp;256x256 - 365x180 - 16384; (coarse VPs, estimated from surface normals)<br/>
-NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768;<br/>
+ScanNet (*Ours*):&nbsp;&nbsp; &nbsp;&nbsp;256x256 - 365x180 - 16384; <br/>
+NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768; <br/>
 
 Tab 1&2 show that quantization at 128x128 is already sufficient for a decent result. Moreover training/inference time decreases significantly. However, quantization has always been a weakness for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 

@@ -40,7 +40,7 @@ We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to 
 Note: this branch only contains the **multi-scale** version of our model, which runs at **~23FPS** on a Nvidia RTX2080Ti GPU with the **Manhattan assumption** only.
 
 ### Installation
-For the ease of reproducibility, you are suggested to install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/) if you prefer) before executing the following commands. Our code has been tested with miniconda/3.9, CUDA/10.2 and devtoolset/6.
+Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/)) before executing the following commands. Our code has been tested with miniconda/3.9, CUDA/10.2 and devtoolset/6.
 
 ```bash
 conda create -y -n vpd

@@ -26,6 +26,7 @@ __global__ void im2ht_cuda_forward_kernel(const int n,
                                 )
 {
   // launch channel*num_votes   cores
+  // todo: coalescing
   CUDA_KERNEL_LOOP(index, n)
   {
   // input: [batch, channel, height, width]
@@ -79,6 +80,7 @@ __global__ void im2ht_cuda_backward_kernel(const int n,
                                   )
 {
   // launch channel * height *  ht_w  cores
+  // todo: coalescing
   CUDA_KERNEL_LOOP(index, n)
   {
     // input: [batch, channel, height, width]

@@ -25,6 +25,7 @@ __global__ void ht2sphere_cuda_forward_kernel(const int n,
                                 )
 {
   // launch channel * num_votes  cores
+  // todo: coalesce
   CUDA_KERNEL_LOOP(index, n)
   {
   // sphere_index: [num_votes, 3]
@@ -68,6 +69,7 @@ __global__ void ht2sphere_cuda_backward_kernel(const int n,
                                   )
 {
   // launch channel * num_votes  cores
+  // todo: coalesce
   CUDA_KERNEL_LOOP(index, n)
   {
   // sphere_index: [num_votes, 3]

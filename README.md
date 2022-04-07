@@ -35,7 +35,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
 
 ## Reproducing Results
-We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
+We made necessary changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
 
 Note: this branch only contains the **multi-scale** version of our model, which runs at **~23FPS** on a Nvidia RTX2080Ti GPU with the **Manhattan assumption** only.
 

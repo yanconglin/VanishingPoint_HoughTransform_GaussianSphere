@@ -35,7 +35,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
 
 ## Reproducing Results
-We made minor changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
+We made necessary changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
 
 ### Installation
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/)) before executing the following commands. Our code has been tested with miniconda/3.9, CUDA/10.2 and devtoolset/6.

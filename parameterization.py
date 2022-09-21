@@ -175,7 +175,7 @@ def compute_normal(mapping_ht, h_img, w_img, h_ht, w_ht, rhos, thetas, focal_len
             if normal_vector[2]<0.0: normal_vector *= -1
             ht_normal[j,i]=normal_vector
 
-            # vote_image = vote_index_ht[:, :, i] == j
+            # vote_image = mapping_ht[:, :, i] == j
             # vote_image = vote_image.astype(np.float32)
             # fig, axs = plt.subplots(1,2)
             # axs = axs.ravel()
@@ -481,8 +481,8 @@ if __name__ == "__main__":
     parser.add_argument('--focal_length', type=float, default=1.0, help='focal length, set to 1.0 if unknown')
     parser.add_argument('--rows', type=int, default=256, help='rows - image height')
     parser.add_argument('--cols', type=int, default=256, help='cols - image width')
-    parser.add_argument('--theta', type=float, default=1.0, help='theta - hyperparameter for HT')
-    parser.add_argument('--rho', type=float, default=1.0, help='rho - hyperparameter for HT')
+    parser.add_argument('--theta_res', type=float, default=1.0, help='theta_res - hyperparameter for HT')
+    parser.add_argument('--rho_res', type=float, default=1.0, help='rho_res - hyperparameter for HT')
     parser.add_argument('--num_samples', type=int, default=180, help='num_samples - number of angles for Gaussian sphere')
     parser.add_argument('--num_points', type=int, default=32768, help='num_points - number of sampled spherical points')
     opt = parser.parse_args()

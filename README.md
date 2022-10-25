@@ -6,7 +6,7 @@ Official implementation: [Deep vanishing point detection: Geometric priors make 
 
 E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
 
-Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, the Netherlands
+Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, The Netherlands
 
 <img src="figs/overview.png" width="1024"> 
 
@@ -35,7 +35,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
 
 ## Reproducing Results
-We made necessary changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
+We made necessary changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code.
 
 Note: this branch only contains the **multi-scale** version of our model, which runs at **~23FPS** on a Nvidia RTX2080Ti GPU with the **Manhattan assumption** only.
 
@@ -110,7 +110,7 @@ They are all in the dataloader, starting from [this line](https://github.com/yan
 Unfortunately, I do not have such an implementation yet at this moment.
 
 ### (5) Code for other baselines.
-[J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?](); [Haoang Li](https://sites.google.com/view/haoangli/homepage);
+[J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?](https://openaccess.thecvf.com/content/ICCV2021/html/Liu_VaPiD_A_Rapid_Vanishing_Point_Detector_via_Learned_Optimizers_ICCV_2021_paper.html); [Haoang Li](https://sites.google.com/view/haoangli/homepage);
 
 ### Citation
 If you find our paper useful in your research, please consider citing:

@@ -6,7 +6,7 @@ Official implementation: [Deep vanishing point detection: Geometric priors make 
 
 E-mail: y.lin-1ATtudelftDOTnl; r.t.wiersmaATtudelftDOTnl
 
-Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, the Netherlands
+Joint work from [Computer Vision Lab](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/computer-vision-lab/) and [Computer Graphics and Visualization](https://graphics.tudelft.nl/) <br/> Delft University of Technology, The Netherlands
 
 <img src="figs/overview.png" width="1024"> 
 
@@ -35,7 +35,7 @@ Deep learning has greatly improved vanishing point detection in images. Yet, dee
  
 
 ## Reproducing Results
-We made necessary changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code!
+We made necessary changes on top of [NeurVPS](https://github.com/zhou13/neurvps) to fit our design. Many thanks to Yichao Zhou for releasing the code.
 
 ### Installation
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anaconda](https://www.anaconda.com/distribution/)) before executing the following commands. Our code has been tested with miniconda/3.9, CUDA/10.2 and devtoolset/6.

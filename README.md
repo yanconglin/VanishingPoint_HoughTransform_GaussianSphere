@@ -43,7 +43,7 @@ Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (or [anacond
 ```bash
 conda create -y -n vpd
 conda activate vpd
-conda env update --file environment.yml
+conda env update --file config/environment.yml
 ```
 
 ### (step 1) Process the data

@@ -127,10 +127,13 @@ NYU/YUD (*Ours*): &nbsp;&nbsp;240x320 - 403x180 - 32768; <br/>
 
 Tab 1&2 show that quantization at 128x128 is already sufficient for a decent result. Moreover training/inference time decreases significantly. However, quantization has always been a weakness for the classic HT/Gaussian sphere, despite of their excelllence in adding inductive knowledge.
 
-### (5) Spherical mapping on-the-fly without pre-calculation.
+### (5) Cross-dataset evaluation.
+To reproduce the cross-dataset result, please refer to this [issue](https://github.com/yanconglin/VanishingPoint_HoughTransform_GaussianSphere/issues/7#issue-1587778077) for details.
+
+### (6) Spherical mapping on-the-fly without pre-calculation.
 Unfortunately, I do not have such an implementation yet at this moment.
 
-### (6) Code for other baselines.
+### (7) Code for other baselines.
 [J/T-Linkage](https://github.com/fkluger/vp-linkage); [J-Linkage](https://github.com/simbaforrest/vpdetection); [Contrario-VP](https://members.loria.fr/GSimon/software/v/); [NeurVPS](https://github.com/zhou13/neurvps); [CONSAC](https://github.com/fkluger/consac); [VaPiD?](https://openaccess.thecvf.com/content/ICCV2021/html/Liu_VaPiD_A_Rapid_Vanishing_Point_Detector_via_Learned_Optimizers_ICCV_2021_paper.html); [Haoang Li](https://sites.google.com/view/haoangli/homepage)
 
 ### Citation

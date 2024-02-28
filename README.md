@@ -118,7 +118,7 @@ If you find our paper useful in your research, please consider citing:
 @article{lin2022vpd,
   title={Deep vanishing point detection: Geometric priors make dataset variations vanish},
   author={Lin, Yancong and Wiersma, Ruben and and Pintea, Silvia L and Hildebrandt, Klaus and Eisemann, Elmar and van Gemert, Jan C},
-  booktitle={Conference on Computer Vision and Pattern Recognition},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2022}
 }
 ```

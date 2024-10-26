@@ -289,7 +289,7 @@ class YUDDataset(Dataset):
         image = skimage.io.imread(iname)[:, :, 0:3]
         image = np.rollaxis(image, 2).copy().astype(float)
 
-        with np.load(iname.replace(".png", "_label_" + str(C.io.num_nodes) + ".npz"), allow_pickle=True) as npz:
+        with np.load(iname.replace(".png", ".npz"), allow_pickle=True) as npz:
             vpts = npz["vpts"]
 
         if not self.yudplus:

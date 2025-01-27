@@ -49,16 +49,6 @@ conda env update --file config/environment.yml
 ### (step 1) Process the data
 
 SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to process the data. 
-```bash
-cd data
-../misc/gdrive-download.sh 1yRwLv28ozRvjsf9wGwAqzya1xFZ5wYET su3.tar.xz
-../misc/gdrive-download.sh 1y_O9PxZhJ_Ml297FgoWMBLvjC1BvTs9A scannet.tar.xz
-tar xf su3.tar.xz
-tar xf tmm17.tar.xz
-tar xf scannet.tar.xz
-rm *.tar.xz
-cd ..
-```
 
 NYU/YUD: we download the data from [CONSAC](https://github.com/fkluger/nyu_vp); and then process the data. 
 ```bash

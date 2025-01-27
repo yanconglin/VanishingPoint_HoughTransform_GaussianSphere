@@ -51,17 +51,6 @@ conda env update --file config/environment.yml
 ### (step 1) Processing the Dataset
 
 SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to process the data. 
-```bash
-cd data
-../misc/gdrive-download.sh 1yRwLv28ozRvjsf9wGwAqzya1xFZ5wYET su3.tar.xz
-../misc/gdrive-download.sh 1y_O9PxZhJ_Ml297FgoWMBLvjC1BvTs9A scannet.tar.xz
-tar xf su3.tar.xz
-tar xf tmm17.tar.xz
-tar xf scannet.tar.xz
-rm *.tar.xz
-cd ..
-```
-
 
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
 Shortcut: You can simply download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210), and place them inside the project folder, e.g. `project_folder/cache/inds_32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .

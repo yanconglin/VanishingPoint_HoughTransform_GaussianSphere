@@ -53,7 +53,7 @@ conda env update --file config/environment.yml
 SU3/ScanNet: we follow [NeurVPS](https://github.com/zhou13/neurvps) to process the data. 
 
 ### (step 2) Compute parameterizations: Hough Transform and Gaussian Sphere 
-Shortcut: You can simply download our pre-calculated parameterizations from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210), and place them inside the project folder, e.g. `project_folder/cache/inds_32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .
+Shortcut: You can simply download our pre-calculated parameterizations from [GoogleDrive](https://drive.google.com/drive/folders/19x3QXtqO7w3-sSOV3R4MpZVIumWsXu_D?usp=sharing), and place them inside the project folder, e.g. `project_folder/cache/inds_32768.npz`, `project_folder/parameterization/ht_128_128_184_180.npz` and `project_folder/parameterization/sphere_neighbors_184_180_32768_rearrange.npz` folder .
 
 To comute the mapping from pixels -HT bins - Spherical points, run the following command: 
 ```bash
@@ -76,7 +76,7 @@ Manhattan world (3-orthogonal VPs):
 python eval.py -d 0  -o path/to/resut.npz  path/to/config.yaml  path/to/checkpoint.pth.tar
 ```
 
-You can also download our checkpoints/results/logs from [SURFdrive](https://surfdrive.surf.nl/files/index.php/f/10762395210).
+You can also download our checkpoints/results/logs from [GoogleDrive](https://drive.google.com/drive/folders/19x3QXtqO7w3-sSOV3R4MpZVIumWsXu_D?usp=sharing).
 
 
 ## Questions:

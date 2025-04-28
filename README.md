@@ -85,7 +85,7 @@ python eval_nyu.py -d 0  --dump path/to/result_folder  config/nyu.yaml  path/to/
 python cluster_nyu.py --datadir path/to/nyu/data --pred_dir path/to/result_folder 
 ```
 
-You can also download our checkpoints/results/logs from [GoogleDrive]([https://surfdrive.surf.nl/files/index.php/s/nKOCFAgZxulxHH0](https://drive.google.com/drive/folders/19x3QXtqO7w3-sSOV3R4MpZVIumWsXu_D?usp=sharing)).
+You can also download our checkpoints/results/logs from [GoogleDrive](https://drive.google.com/drive/folders/19x3QXtqO7w3-sSOV3R4MpZVIumWsXu_D?usp=sharing).
 
 
 ### Demo
